@@ -79,6 +79,30 @@
   --ease-*: initial;
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-quiet: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-*: initial;
+  --animate-fade-in: fade-in 480ms var(--ease-luxe) both;
+  --animate-fade-out: fade-out 240ms var(--ease-quiet) both;
+  --animate-drawer-in-start: drawer-in-start 480ms var(--ease-luxe) both;
+  --animate-drawer-out-start: drawer-out-start 240ms var(--ease-quiet) both;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+  }
+  @keyframes fade-out {
+    to { opacity: 0; }
+  }
+  @keyframes drawer-in-start {
+    from { transform: translateX(calc(-100% * var(--start-dir, 1))); }
+  }
+  @keyframes drawer-out-start {
+    to { transform: translateX(calc(-100% * var(--start-dir, 1))); }
+  }
+}
+
+/* RTL-ready: the start edge is on the right, so start-edge drawers slide the other way. */
+[dir="rtl"] {
+  --start-dir: -1;
 }
 
 :root {

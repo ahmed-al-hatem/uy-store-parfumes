@@ -16,3 +16,9 @@ Decisions where DESIGN.md is silent or conflicts with the build brief. DESIGN.md
 | D-10 | Focus ring | 1px Soot outline, 3px offset. | DESIGN.md has no focus style; uses only existing colour and hairline weight. |
 | D-11 | Touch target | `--spacing-touch: 44px` added as a sizing token. | Accessibility floor from the brief; not a visual spacing value. |
 | D-12 | Theme | Light only, no dark mode. | DESIGN.md: "Theme: light"; Limestone is the identity. |
+| D-13 | Navigation labels | Start zone: SHOP ▾ (full-width panel: wear, families, houses, one featured bottle), FOR HER, FOR HIM, SHARED. End zone: SEARCH, THE STUDIO, LOG IN, wishlist and bag icons. Phones: MENU drawer from the start edge, search, account and bag icons. | DESIGN.md's links (homewear, clothing, journal) describe a wider brand; this store sells fragrance only. "Shared" reads warmer than "unisex" in the nav; filters keep "Unisex". |
+| D-14 | Uppercase nav and labels | Kept, per DESIGN.md, even though the frontend-design skill discourages all-caps labels. | DESIGN.md is binding. |
+| D-15 | Hairlines | 1px Soot rules under the announcement bar, the header, between grid cells and above the footer. | DESIGN.md requires them; the taste skill bans thin rules, DESIGN.md wins. |
+| D-16 | Sticky header | The nav row sticks to the top; the announcement bar scrolls away. Flat Limestone, no blur or shadow. | Keeps the bag and menu in reach on long pages without adding chrome. |
+| D-17 | Store address and hours | Linienstraße 40, Berlin; Tuesday to Saturday 11–19, Sunday by appointment. | Placeholder content for the demo; confirm or replace before launch. |
+| D-18 | Overlay scrim | `bg-soot/30` behind drawers. | Built from the Soot token; DESIGN.md has no overlay value. |
