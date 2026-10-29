@@ -15,7 +15,7 @@ export function ConfirmationView() {
   // Orders live in browser storage, so read them only on the client.
   const raw = useSyncExternalStore(noop, () => JSON.stringify(getOrder(number)), () => "loading");
 
-  if (raw === "loading") return <div className="h-[60dvh] animate-breathe bg-chalk" aria-busy="true" />;
+  if (raw === "loading") return <div className="h-[60dvh] animate-breathe bg-surface" aria-busy="true" />;
   const order = JSON.parse(raw) as ReturnType<typeof getOrder>;
 
   if (!order) {
@@ -34,7 +34,7 @@ export function ConfirmationView() {
 
   return (
     <div className="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-      <section aria-labelledby="thanks" className="px-16 pb-30 pt-30 lg:border-e lg:border-soot lg:px-32 lg:pb-section lg:pt-32">
+      <section aria-labelledby="thanks" className="px-16 pb-30 pt-30 lg:border-e lg:border-line lg:px-32 lg:pb-section lg:pt-32">
         <p className="text-caption uppercase">Order {order.number}</p>
         <h1 id="thanks" className="pt-7 text-subheading tracking-display lg:text-heading" tabIndex={-1}>
           Thank you, {order.firstName}.
@@ -84,13 +84,13 @@ export function ConfirmationView() {
         </div>
       </section>
 
-      <aside aria-labelledby="ordered" className="border-t border-soot px-16 pb-section pt-30 lg:border-t-0 lg:px-32 lg:pt-32">
+      <aside aria-labelledby="ordered" className="border-t border-line px-16 pb-section pt-30 lg:border-t-0 lg:px-32 lg:pt-32">
         <h2 id="ordered" className="pb-13 text-caption uppercase">
           Your order
         </h2>
-        <ul className="border-t border-soot">
+        <ul className="border-t border-line">
           {order.lines.map((l) => (
-            <li key={`${l.slug}-${l.sizeMl}-${l.concentration ?? ""}`} className="flex gap-13 border-b border-soot py-13">
+            <li key={`${l.slug}-${l.sizeMl}-${l.concentration ?? ""}`} className="flex gap-13 border-b border-line py-13">
               <div className="w-[72px] shrink-0">
                 <ProductFrame image={{ ...l.image, source: "", luminance: 0 }} alt="" sizes="72px" />
               </div>

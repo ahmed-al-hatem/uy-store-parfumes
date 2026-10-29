@@ -29,7 +29,7 @@ export function CartPageView() {
 
   return (
     <div className="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-      <section aria-labelledby="bag-title" className="px-16 pt-30 lg:border-e lg:border-soot lg:px-32 lg:pt-32">
+      <section aria-labelledby="bag-title" className="px-16 pt-30 lg:border-e lg:border-line lg:px-32 lg:pt-32">
         <h1 id="bag-title" className="text-subheading tracking-display lg:text-heading">
           Your bag{count > 0 && <span className="text-body"> ({count})</span>}
         </h1>
@@ -39,7 +39,7 @@ export function CartPageView() {
         {ready ? (
           <CartLines priced={priced} />
         ) : (
-          <div className="h-[160px] animate-breathe border-y border-soot bg-chalk" aria-label="Loading your bag" />
+          <div className="h-[160px] animate-breathe border-y border-line bg-surface" aria-label="Loading your bag" />
         )}
         <div className="flex flex-col gap-30 py-30">
           <SamplePicker />
@@ -47,7 +47,7 @@ export function CartPageView() {
         </div>
       </section>
 
-      <aside aria-labelledby="summary-title" className="border-t border-soot px-16 pb-section pt-30 lg:sticky lg:top-[var(--header-h)] lg:self-start lg:border-t-0 lg:px-32 lg:pt-32">
+      <aside aria-labelledby="summary-title" className="border-t border-line px-16 pb-section pt-30 lg:sticky lg:top-[var(--header-h)] lg:self-start lg:border-t-0 lg:px-32 lg:pt-32">
         <h2 id="summary-title" className="pb-13 text-caption uppercase">
           Order summary
         </h2>
@@ -58,7 +58,7 @@ export function CartPageView() {
         <Link
           href="/checkout"
           aria-disabled={!ready}
-          className="mt-17 flex min-h-[52px] w-full items-center justify-center bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px aria-disabled:pointer-events-none aria-disabled:opacity-40"
+          className="btn btn-primary mt-17 w-full"
         >
           Checkout
         </Link>

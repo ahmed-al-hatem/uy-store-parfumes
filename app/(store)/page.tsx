@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { BestSellers } from "@/components/home/BestSellers";
 import { FamilyIndex, type FamilyEntry } from "@/components/home/FamilyIndex";
 import { HeroFrame } from "@/components/home/HeroFrame";
@@ -60,48 +61,61 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero: the photograph is never cropped, so it sits beside the type rather than under it (DECISIONS.md D-07). */}
-      <section aria-labelledby="hero-title" className="grid border-b border-soot lg:grid-cols-2">
-        <div className="order-2 flex flex-col justify-end px-16 pb-30 pt-30 lg:order-1 lg:border-e lg:border-soot lg:px-32 lg:pb-32">
-          <h1 id="hero-title" className="max-w-[14ch] text-subheading tracking-display sm:text-heading">
-            A quiet gallery of fine fragrance.
+      {/* Hero: the photograph is never cropped, so it sits beside the type on a sand panel (DECISIONS.md D-07, D-46). */}
+      <section aria-labelledby="hero-title" className="grid lg:min-h-[calc(100svh-var(--header-h)-36px)] lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+        <div className="order-2 flex flex-col justify-center px-16 pb-48 pt-30 lg:order-1 lg:px-48 lg:py-64">
+          <p className="label hero-fade pb-20 text-accent-strong">Fine fragrance, Berlin</p>
+          <h1 id="hero-title" className="text-display">
+            <span className="hero-line">
+              <span style={{ "--d": 0 } as CSSProperties}>A quiet gallery</span>
+            </span>
+            <span className="hero-line">
+              <span style={{ "--d": 1 } as CSSProperties}>of fine fragrance.</span>
+            </span>
           </h1>
-          <p className="max-w-[44ch] pt-17 text-body">
+          <p className="hero-fade max-w-[40ch] pt-20 text-body text-muted">
             Sixty-nine perfumes from the houses we admire and our own small line, wrapped by hand in Berlin with two samples of your choice.
           </p>
-          <div className="flex flex-wrap items-center gap-x-30 gap-y-10 pt-30">
-            <Link href="/shop" className="inline-flex min-h-[52px] items-center bg-graphite px-30 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px">
+          <div className="hero-fade flex flex-wrap items-center gap-x-30 gap-y-13 pt-30">
+            <Link href="/shop" className="btn btn-primary">
               Shop all fragrance
             </Link>
-            <Link href="/shop?collection=studio-line" className="inline-flex min-h-touch items-center text-caption uppercase underline decoration-1 underline-offset-4">
+            <Link href="/shop?collection=studio-line" className="label link-grow inline-flex min-h-touch items-center">
               Our own letters
             </Link>
           </div>
         </div>
-        <div className="order-1 lg:order-2">
-          <HeroFrame image={productImages[HERO][0]} alt="Marc Jacobs Daisy on a white plinth, a leaf shadow on the wall behind" />
+        <div className="order-1 bg-surface lg:order-2 lg:flex lg:items-center lg:justify-center lg:p-64">
+          <div className="hero-photo w-full lg:max-w-[min(100%,calc(100svh-var(--header-h)-200px))]">
+            <HeroFrame image={productImages[HERO][0]} alt="Marc Jacobs Daisy on a white plinth, a leaf shadow on the wall behind" />
+          </div>
         </div>
       </section>
 
       <section aria-labelledby="collections-title" className="pt-section">
-        <Reveal>
-          <h2 id="collections-title" className="px-16 pb-17 text-subheading tracking-display lg:px-32">
+        <Reveal className="flex items-end justify-between gap-20 px-16 pb-30 lg:px-32">
+          <h2 id="collections-title" className="text-heading">
             Collections
           </h2>
+          <p className="max-w-[36ch] text-body-sm text-muted max-md:hidden">Four ways into the shelf, from the icons to our own small-batch letters.</p>
         </Reveal>
-        <div className="overflow-hidden border-t border-soot">
-          <RevealGroup as="li" className="grid w-[calc(100%+1px)] grid-cols-2 lg:grid-cols-4">
+        <div className="px-gutter">
+          <RevealGroup as="li" className="grid grid-cols-2 gap-x-gutter gap-y-32 lg:grid-cols-4">
             {collections.map((c) => (
-              <RevealItem as="li" key={c.slug} className="border-b border-e border-soot">
+              <RevealItem as="li" key={c.slug}>
                 <Link href={`/shop?collection=${c.slug}`} className="group block">
                   <ProductFrame
                     image={productImages[COLLECTION_PHOTOS[c.slug]][0]}
                     alt={`${name(COLLECTION_PHOTOS[c.slug])}, from ${c.title.toLowerCase()}`}
                     sizes="(min-width: 1024px) 25vw, 50vw"
+                    matted
+                    zoom
                   />
-                  <span className="block px-10 pb-17 pt-13 text-center">
-                    <span className="block text-body-sm decoration-1 underline-offset-4 group-hover:underline">{c.title}</span>
-                    <span className="block pt-4 text-caption max-sm:hidden">{c.description}</span>
+                  <span className="block pb-10 pt-13">
+                    <span className="text-title block">
+                      <span className="link-grow-target">{c.title}</span>
+                    </span>
+                    <span className="block pt-6 text-body-sm text-muted max-sm:hidden">{c.description}</span>
                   </span>
                 </Link>
               </RevealItem>
@@ -111,62 +125,65 @@ export default function HomePage() {
       </section>
 
       <section aria-labelledby="best-title" className="pt-section">
-        <Reveal className="flex items-baseline justify-between px-16 pb-17 lg:px-32">
-          <h2 id="best-title" className="text-subheading tracking-display">
+        <Reveal className="flex items-end justify-between px-16 pb-30 lg:px-32">
+          <h2 id="best-title" className="text-heading">
             Most loved this season
           </h2>
-          <Link href="/shop?sort=bestselling" className="text-caption uppercase underline decoration-1 underline-offset-4">
+          <Link href="/shop?sort=bestselling" className="label link-grow inline-flex min-h-touch items-center">
             See all
           </Link>
         </Reveal>
         <BestSellers products={bestSellers} />
       </section>
 
-      <section aria-labelledby="families-title" className="pt-section">
-        <Reveal>
-          <h2 id="families-title" className="px-16 pb-6 text-subheading tracking-display lg:px-32">
+      <section aria-labelledby="families-title" className="mt-section bg-surface pt-section">
+        <Reveal className="px-16 pb-30 lg:px-32">
+          <h2 id="families-title" className="text-heading">
             Shop by family
           </h2>
-          <p className="max-w-[56ch] px-16 pb-17 text-body-sm lg:px-32">Every fragrance belongs to a family. Start from the one you already love.</p>
+          <p className="max-w-[56ch] pt-10 text-body-sm text-muted">Every fragrance belongs to a family. Start from the one you already love.</p>
         </Reveal>
         <FamilyIndex families={familyEntries} />
       </section>
 
-      <section aria-labelledby="story-title" className="mt-section grid border-y border-soot lg:grid-cols-2">
-        <div className="lg:border-e lg:border-soot">
+      <section aria-labelledby="story-title" className="grid bg-ink text-canvas lg:grid-cols-2">
+        <div>
           <ProductFrame image={atmosphereImages["perfume-oil-dropper"]} alt="Glass vials and a dropper of perfume oil in the studio" sizes="(min-width: 1024px) 50vw, 100vw" />
         </div>
-        <Reveal className="flex flex-col justify-center px-16 py-30 lg:px-32">
-          <h2 id="story-title" className="text-subheading tracking-display">
+        <Reveal className="flex flex-col justify-center px-16 py-64 lg:px-64">
+          <p className="label pb-20 text-canvas/75">The studio</p>
+          <h2 id="story-title" className="text-heading">
             Made slowly, in Berlin.
           </h2>
-          <p className="max-w-[52ch] pt-17 text-body">
+          <p className="max-w-[48ch] pt-20 text-body text-canvas/75">
             UY began as a shelf of bottles in a concrete room on Linienstraße. We still keep it that way: a short list of perfumes we would wear ourselves, a
             small line of our own blended in batches of two hundred, and every order wrapped by hand.
           </p>
-          <Link href="/about" className="mt-17 inline-flex min-h-touch items-center text-caption uppercase underline decoration-1 underline-offset-4">
-            The studio
-          </Link>
+          <div className="pt-30">
+            <Link href="/about" className="btn btn-light">
+              Visit the studio
+            </Link>
+          </div>
         </Reveal>
       </section>
 
       <section aria-labelledby="voices-title" className="px-16 pt-section lg:px-32">
         <Reveal>
-          <h2 id="voices-title" className="pb-17 text-subheading tracking-display">
+          <h2 id="voices-title" className="pb-30 text-heading">
             From our reviews
           </h2>
         </Reveal>
-        <RevealGroup className="grid gap-30 border-t border-soot pt-30 md:grid-cols-3 md:gap-32">
+        <RevealGroup className="grid gap-48 md:grid-cols-3 md:gap-32">
           {quotes.map(({ slug, product, review }) => (
-            <RevealItem key={slug}>
+            <RevealItem key={slug} className="border-t border-line pt-20">
               <figure>
-                <Stars rating={review!.rating} />
-                <blockquote className="pt-10 text-body">
+                <Stars rating={review!.rating} size={13} />
+                <blockquote className="font-display pt-13 text-[26px] leading-[1.3]">
                   <p>&ldquo;{review!.body}&rdquo;</p>
                 </blockquote>
-                <figcaption className="pt-13 text-caption">
+                <figcaption className="pt-17 text-caption text-muted">
                   {review!.author}, {review!.location}, on{" "}
-                  <Link href={`/product/${slug}`} className="underline decoration-1 underline-offset-4">
+                  <Link href={`/product/${slug}`} className="link-grow text-ink">
                     {product}
                   </Link>
                 </figcaption>
@@ -176,14 +193,14 @@ export default function HomePage() {
         </RevealGroup>
       </section>
 
-      <section aria-labelledby="letter-title" className="mx-16 mt-section border-t border-soot pt-30 lg:mx-32 lg:grid lg:grid-cols-2 lg:gap-32">
+      <section aria-labelledby="letter-title" className="mt-section bg-surface px-16 py-section lg:grid lg:grid-cols-2 lg:items-end lg:gap-64 lg:px-32">
         <Reveal>
-          <h2 id="letter-title" className="text-subheading tracking-display">
+          <h2 id="letter-title" className="text-heading">
             The letter
           </h2>
-          <p className="max-w-[44ch] pt-13 text-body-sm">New arrivals, studio evenings and the occasional sample, four times a year. Nothing more.</p>
+          <p className="max-w-[44ch] pt-13 text-body-sm text-muted">New arrivals, studio evenings and the occasional sample, four times a year. Nothing more.</p>
         </Reveal>
-        <div className="pt-17 lg:pt-0">
+        <div className="pt-30 lg:pt-0">
           <NewsletterForm />
         </div>
       </section>

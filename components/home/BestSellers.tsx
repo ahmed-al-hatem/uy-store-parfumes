@@ -25,15 +25,15 @@ export function BestSellers({ products }: { products: ProductSummary[] }) {
 
   return (
     <div>
-      <div className="overflow-hidden border-t border-soot">
+      <div className="px-gutter">
         <ul
           ref={track}
           onScroll={onScroll}
-          className="flex w-[calc(100%+1px)] snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-gutter snap-x snap-mandatory scroll-px-gutter overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Best sellers"
         >
           {products.map((p) => (
-            <li key={p.slug} className="w-1/2 shrink-0 snap-start border-b border-e border-soot sm:w-1/3 lg:w-1/5">
+            <li key={p.slug} className="shrink-0 basis-[44%] snap-start sm:basis-[30%] lg:basis-[calc((100%-4*var(--spacing-gutter))/5)]">
               <ProductCard product={p} sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw" />
             </li>
           ))}

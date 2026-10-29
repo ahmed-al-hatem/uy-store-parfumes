@@ -14,7 +14,7 @@ export function Checkbox({ label, meta, type = "checkbox", className = "", ...pr
     >
       <input
         type={type}
-        className="peer size-[13px] shrink-0 cursor-pointer appearance-none border border-soot bg-transparent checked:bg-soot disabled:cursor-default"
+        className="peer size-[13px] shrink-0 cursor-pointer appearance-none rounded-[2px] border border-ink/50 bg-transparent checked:bg-ink disabled:cursor-default"
         {...props}
       />
       <span className="flex-1 decoration-1 underline-offset-4 peer-hover:underline">{label}</span>

@@ -8,7 +8,7 @@ type QuantityStepperProps = { value: number; onChange: (value: number) => void; 
 export function QuantityStepper({ value, onChange, label }: QuantityStepperProps) {
   const btn = "inline-flex size-[44px] items-center justify-center disabled:opacity-30";
   return (
-    <div role="group" aria-label={`Quantity, ${label}`} className="inline-flex items-center border border-soot">
+    <div role="group" aria-label={`Quantity, ${label}`} className="inline-flex items-center rounded-pill border border-ink/30">
       <button type="button" className={btn} onClick={() => onChange(value - 1)} disabled={value <= 1} aria-label="One fewer">
         <MinusIcon size={12} />
       </button>

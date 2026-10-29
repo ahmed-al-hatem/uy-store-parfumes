@@ -19,10 +19,10 @@ export function FamilyIndex({ families }: { families: FamilyEntry[] }) {
   const current = families[active];
 
   return (
-    <div className="grid border-t border-soot lg:grid-cols-2">
-      <ul className="lg:border-e lg:border-soot">
+    <div className="grid border-t border-line lg:grid-cols-2">
+      <ul className="lg:border-e lg:border-line">
         {families.map((f, i) => (
-          <li key={f.slug} className="border-b border-soot last:border-b-0">
+          <li key={f.slug} className="border-b border-line last:border-b-0">
             <Link
               href={`/shop?family=${f.slug}`}
               onMouseEnter={() => setActive(i)}

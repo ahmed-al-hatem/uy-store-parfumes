@@ -37,7 +37,7 @@ export function Gallery({ images, name }: GalleryProps) {
       <ul
         ref={track}
         onScroll={onScroll}
-        className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] lg:flex-col lg:gap-px lg:overflow-visible lg:bg-soot [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] lg:flex-col lg:gap-6 lg:overflow-visible [&::-webkit-scrollbar]:hidden"
       >
         {images.map((image, i) => (
           <li key={image.src} className="w-full shrink-0 snap-center">
@@ -52,6 +52,7 @@ export function Gallery({ images, name }: GalleryProps) {
                 alt={`${name}, photo ${i + 1} of ${images.length}`}
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 preload={i === 0}
+                matted
               />
             </button>
           </li>
@@ -59,7 +60,7 @@ export function Gallery({ images, name }: GalleryProps) {
       </ul>
 
       {images.length > 1 && (
-        <p className="absolute bottom-10 end-16 bg-limestone px-6 py-4 text-caption tabular-nums lg:hidden" aria-live="polite">
+        <p className="label absolute bottom-[10%] end-[10%] rounded-pill bg-canvas/95 px-12 py-6 tabular-nums lg:hidden" aria-live="polite">
           {index + 1} / {images.length}
         </p>
       )}

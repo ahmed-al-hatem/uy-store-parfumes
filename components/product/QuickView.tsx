@@ -34,17 +34,17 @@ export function QuickView({ product, open, onOpenChange }: QuickViewProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-soot/30 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
-        <Dialog.Content className="fixed inset-x-0 bottom-0 z-50 max-h-[92dvh] overflow-y-auto border-t border-soot bg-limestone data-[state=closed]:animate-sheet-out data-[state=open]:animate-sheet-in md:inset-auto md:start-1/2 md:top-1/2 md:w-[min(92vw,960px)] md:-translate-x-1/2 md:-translate-y-1/2 md:border md:data-[state=closed]:animate-fade-out md:data-[state=open]:animate-fade-in rtl:md:translate-x-1/2">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/40 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
+        <Dialog.Content className="fixed inset-x-0 bottom-0 z-50 max-h-[92dvh] overflow-y-auto border-t border-line bg-canvas data-[state=closed]:animate-sheet-out data-[state=open]:animate-sheet-in md:inset-auto md:start-1/2 md:top-1/2 md:w-[min(92vw,960px)] md:-translate-x-1/2 md:-translate-y-1/2 md:border md:shadow-float md:data-[state=closed]:animate-fade-out md:data-[state=open]:animate-fade-in rtl:md:translate-x-1/2">
           <div className="grid md:grid-cols-2">
-            <div ref={frame} className="md:border-e md:border-soot">
-              <ProductFrame image={product.images[0]} alt={`${product.brandName} ${product.name}, bottle photograph`} sizes="(min-width: 768px) 480px, 100vw" />
+            <div ref={frame} className="md:border-e md:border-line">
+              <ProductFrame image={product.images[0]} alt={`${product.brandName} ${product.name}, bottle photograph`} sizes="(min-width: 768px) 480px, 100vw" matted />
             </div>
             <div className="flex flex-col px-16 pb-17 pt-13 md:px-30 md:pt-30">
               <div className="flex items-start justify-between gap-13">
                 <div>
-                  <p className="text-caption uppercase">{product.brandName}</p>
-                  <Dialog.Title className="pt-4 text-subheading tracking-display">{product.name}</Dialog.Title>
+                  <p className="label text-muted">{product.brandName}</p>
+                  <Dialog.Title className="pt-6 text-subheading">{product.name}</Dialog.Title>
                 </div>
                 <Dialog.Close className="inline-flex min-h-touch min-w-touch shrink-0 items-center justify-end" aria-label="Close quick view">
                   <CloseIcon />
@@ -53,18 +53,18 @@ export function QuickView({ product, open, onOpenChange }: QuickViewProps) {
               <Dialog.Description className="pt-7 text-body-sm">
                 {product.topNotes.slice(0, 3).join(", ")}, and more.
               </Dialog.Description>
-              <p className="pt-13 text-body tabular-nums" aria-live="polite">
+              <p className="font-display pt-13 text-[26px] leading-none tabular-nums" aria-live="polite">
                 {formatPrice(size.price)}
               </p>
 
               <fieldset className="pt-13">
-                <legend className="pb-6 text-caption uppercase">Size</legend>
-                <div className="grid grid-cols-2 border-s border-t border-soot sm:grid-cols-3">
+                <legend className="label pb-10 text-muted">Size</legend>
+                <div className="flex flex-wrap gap-10">
                   {product.sizes.map((s, i) => (
                     <label
                       key={`${s.ml}-${s.concentration ?? ""}`}
-                      className={`flex min-h-[52px] cursor-pointer flex-col items-center justify-center border-b border-e border-soot px-6 text-center has-checked:bg-soot has-checked:text-limestone has-focus-visible:outline has-focus-visible:outline-1 has-focus-visible:-outline-offset-4 ${
-                        s.stock <= 0 ? "text-soot/50" : ""
+                      className={`flex min-h-[52px] min-w-[104px] cursor-pointer flex-col items-center justify-center rounded-pill border border-ink/30 px-20 text-center hover:border-ink has-checked:border-ink has-checked:bg-ink has-checked:text-canvas has-focus-visible:outline has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-strong ${
+                        s.stock <= 0 ? "border-dashed text-muted" : ""
                       }`}
                     >
                       <input type="radio" name={`${id}-size`} className="sr-only" checked={selected === i} onChange={() => setSelected(i)} />
@@ -81,7 +81,7 @@ export function QuickView({ product, open, onOpenChange }: QuickViewProps) {
                 type="button"
                 onClick={addToBag}
                 disabled={soldOut}
-                className="mt-17 min-h-[52px] w-full bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px disabled:opacity-40"
+                className="btn btn-primary mt-17 w-full"
               >
                 {soldOut ? "Sold out" : `Add to bag, ${formatPrice(size.price)}`}
               </button>

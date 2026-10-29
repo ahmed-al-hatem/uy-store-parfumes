@@ -42,7 +42,7 @@ export default function ImageReviewPage() {
 
   return (
     <main className="pb-section">
-      <header className="border-b border-soot px-16 py-30 md:px-32">
+      <header className="border-b border-line px-16 py-30 md:px-32">
         <h1 className="text-subheading tracking-display">Image review</h1>
         <p className="mt-13 max-w-[60ch] text-body-sm">
           {products.length} products, {photoCount} photos, all copied unchanged from ./perfumes. Each frame is 1:1 with
@@ -54,9 +54,9 @@ export default function ImageReviewPage() {
         <h2 id="cards" className="px-16 pb-17 text-caption uppercase md:px-32">
           Card frames
         </h2>
-        <ul className="grid grid-cols-2 gap-px border-y border-soot bg-soot lg:grid-cols-5">
+        <ul className="grid grid-cols-2 gap-px border-y border-line bg-ink lg:grid-cols-5">
           {products.map(([slug, images]) => (
-            <li key={slug} className="bg-limestone">
+            <li key={slug} className="bg-canvas">
               <ProductFrame
                 image={images[0]}
                 alt={`${label(slug)}, bottle photograph`}
@@ -78,9 +78,9 @@ export default function ImageReviewPage() {
         <h2 id="pdp" className="px-16 pb-17 text-caption uppercase md:px-32">
           Product page frames
         </h2>
-        <div className="border-t border-soot">
+        <div className="border-t border-line">
           {products.map(([slug, images]) => (
-            <article key={slug} className="border-b border-soot py-30">
+            <article key={slug} className="border-b border-line py-30">
               <h3 className="px-16 pb-13 text-body-sm md:px-32">{label(slug)}</h3>
               <ul className="flex snap-x snap-mandatory gap-px overflow-x-auto px-16 md:px-32">
                 {images.map((image, i) => (

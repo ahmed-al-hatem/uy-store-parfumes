@@ -21,7 +21,7 @@ type FilterDrawerProps = {
 
 function Group({ value, title, count, children }: { value: string; title: string; count: number; children: ReactNode }) {
   return (
-    <Accordion.Item value={value} className="border-b border-soot">
+    <Accordion.Item value={value} className="border-b border-line">
       <Accordion.Header>
         <Accordion.Trigger className="group flex min-h-touch w-full items-center justify-between py-10 text-caption uppercase">
           <span className="decoration-1 underline-offset-4 group-hover:underline">
@@ -75,11 +75,11 @@ export function FilterDrawer({ params, facets, total, loading, hideGender, onCha
         Filter{active > 0 && <span className="normal-case">&nbsp;({active})</span>}
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-soot/30 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/40 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
         <Dialog.Content
-          className="fixed inset-x-0 bottom-0 z-50 flex max-h-[88dvh] flex-col border-t border-soot bg-limestone data-[state=closed]:animate-sheet-out data-[state=open]:animate-sheet-in lg:inset-x-auto lg:inset-y-0 lg:start-0 lg:max-h-none lg:w-[420px] lg:border-e lg:border-t-0 lg:data-[state=closed]:animate-drawer-out-start lg:data-[state=open]:animate-drawer-in-start"
+          className="fixed inset-x-0 bottom-0 z-50 flex max-h-[88dvh] flex-col border-t border-line bg-canvas shadow-float data-[state=closed]:animate-sheet-out data-[state=open]:animate-sheet-in lg:inset-x-auto lg:inset-y-0 lg:start-0 lg:max-h-none lg:w-[420px] lg:border-e lg:border-t-0 lg:data-[state=closed]:animate-drawer-out-start lg:data-[state=open]:animate-drawer-in-start"
         >
-          <div className="flex items-center justify-between border-b border-soot px-16">
+          <div className="flex items-center justify-between border-b border-line px-16">
             <Dialog.Title className="text-caption uppercase">
               Filter{active > 0 && <span className="normal-case"> ({active} applied)</span>}
             </Dialog.Title>
@@ -149,7 +149,7 @@ export function FilterDrawer({ params, facets, total, loading, hideGender, onCha
             </Accordion.Root>
           </div>
 
-          <div className="flex items-center gap-16 border-t border-soot px-16 py-12">
+          <div className="flex items-center gap-16 border-t border-line px-16 py-12">
             <button
               type="button"
               onClick={onClear}
@@ -158,7 +158,7 @@ export function FilterDrawer({ params, facets, total, loading, hideGender, onCha
             >
               Clear all
             </button>
-            <Dialog.Close className="min-h-touch flex-1 bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px">
+            <Dialog.Close className="btn btn-primary flex-1">
               {loading ? "Updating…" : `Show ${total} ${total === 1 ? "fragrance" : "fragrances"}`}
             </Dialog.Close>
           </div>

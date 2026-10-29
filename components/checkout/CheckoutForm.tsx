@@ -23,7 +23,7 @@ const SUBMIT_DELAY = 1400;
 
 function Section({ title, children, aside }: { title: string; children: ReactNode; aside?: ReactNode }) {
   return (
-    <section className="border-t border-soot pb-30 pt-20">
+    <section className="border-t border-line pb-30 pt-20">
       <div className="flex items-baseline justify-between pb-13">
         <h2 className="text-caption uppercase">{title}</h2>
         {aside}
@@ -120,7 +120,7 @@ export function CheckoutForm() {
 
   const summary = (
     <>
-      {ready ? <CartLines priced={priced} compact /> : <div className="h-[120px] animate-breathe bg-chalk" />}
+      {ready ? <CartLines priced={priced} compact /> : <div className="h-[120px] animate-breathe bg-surface" />}
       <div className="py-17">
         <PromoField subtotal={totals.subtotal} />
       </div>
@@ -134,7 +134,7 @@ export function CheckoutForm() {
   return (
     <div className="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
       {/* Phone: the summary folds away above the form. */}
-      <Collapsible.Root className="border-b border-soot lg:hidden">
+      <Collapsible.Root className="border-b border-line lg:hidden">
         <Collapsible.Trigger className="group flex min-h-[52px] w-full items-center justify-between px-16 text-body-sm">
           <span className="text-caption uppercase decoration-1 underline-offset-4 group-hover:underline">
             <span className="group-data-[state=open]:hidden">Show order summary</span>
@@ -145,7 +145,7 @@ export function CheckoutForm() {
         <Collapsible.Content className="px-16 pb-17 data-[state=open]:animate-fade-in">{summary}</Collapsible.Content>
       </Collapsible.Root>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="px-16 pt-20 lg:border-e lg:border-soot lg:px-32 lg:pt-32" aria-labelledby="checkout-title">
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="px-16 pt-20 lg:border-e lg:border-line lg:px-32 lg:pt-32" aria-labelledby="checkout-title">
         <h1 id="checkout-title" className="pb-20 text-subheading tracking-display">
           Checkout
         </h1>
@@ -160,7 +160,7 @@ export function CheckoutForm() {
                 key={label}
                 type="button"
                 onClick={() => setExpressNote(`${label} is shown for the demo only. Complete the form below to place a test order.`)}
-                className="min-h-[48px] rounded-input border border-soot text-body-sm decoration-1 underline-offset-4 hover:underline"
+                className="min-h-[48px] rounded-input border border-ink/40 text-body-sm decoration-1 underline-offset-4 hover:underline"
               >
                 {label}
               </button>
@@ -207,15 +207,15 @@ export function CheckoutForm() {
         </Section>
 
         <Section title="Shipping method">
-          <div className="border-s border-t border-soot">
+          <div className="border-s border-t border-line">
             {(
               [
                 ["standard", "Standard", "2 to 3 working days", standardFree ? 0 : storeConfig.standardShipping],
                 ["express", "Express", "Next working day, ordered before 14:00", storeConfig.expressShipping],
               ] as const
             ).map(([value, label, note, price]) => (
-              <label key={value} className="flex min-h-[56px] cursor-pointer items-center gap-12 border-b border-e border-soot px-13 has-checked:bg-chalk">
-                <input type="radio" value={value} {...register("shippingMethod")} className="size-[13px] appearance-none rounded-full border border-soot checked:bg-soot" />
+              <label key={value} className="flex min-h-[56px] cursor-pointer items-center gap-12 border-b border-e border-line px-13 has-checked:bg-surface">
+                <input type="radio" value={value} {...register("shippingMethod")} className="size-[13px] appearance-none rounded-full border border-line checked:bg-ink" />
                 <span className="flex-1 text-body-sm">
                   {label}
                   <span className="block text-caption">{note}</span>
@@ -228,7 +228,7 @@ export function CheckoutForm() {
 
         <Section title="Payment">
           <p className="pb-10 text-caption">All payments are simulated in this demo. Nothing is charged or sent.</p>
-          <div className="border-s border-t border-soot">
+          <div className="border-s border-t border-line">
             {(
               [
                 ["card", "Credit or debit card", "Visa, Mastercard, American Express"],
@@ -236,16 +236,16 @@ export function CheckoutForm() {
                 ["wallet", storeConfig.regionalWallet.label, storeConfig.regionalWallet.note],
               ] as const
             ).map(([value, label, note]) => (
-              <div key={value} className="border-b border-e border-soot">
-                <label className="flex min-h-[56px] cursor-pointer items-center gap-12 px-13 has-checked:bg-chalk">
-                  <input type="radio" value={value} {...register("paymentMethod")} className="size-[13px] appearance-none rounded-full border border-soot checked:bg-soot" />
+              <div key={value} className="border-b border-e border-line">
+                <label className="flex min-h-[56px] cursor-pointer items-center gap-12 px-13 has-checked:bg-surface">
+                  <input type="radio" value={value} {...register("paymentMethod")} className="size-[13px] appearance-none rounded-full border border-line checked:bg-ink" />
                   <span className="flex-1 text-body-sm">
                     {label}
                     <span className="block text-caption">{note}</span>
                   </span>
                 </label>
                 {value === "card" && paymentMethod === "card" && (
-                  <div className="grid grid-cols-2 gap-13 border-t border-soot px-13 pb-17 pt-13">
+                  <div className="grid grid-cols-2 gap-13 border-t border-line px-13 pb-17 pt-13">
                     <Controller
                       control={control}
                       name="cardNumber"
@@ -315,7 +315,7 @@ export function CheckoutForm() {
           </div>
         </Section>
 
-        <div className="border-t border-soot pb-section pt-20">
+        <div className="border-t border-line pb-section pt-20">
           {Object.keys(errors).length > 0 && (
             <p role="alert" className="pb-10 text-body-sm">
               Some details need another look. They are marked above.
@@ -324,7 +324,7 @@ export function CheckoutForm() {
           <button
             type="submit"
             disabled={isSubmitting || !ready}
-            className="min-h-[56px] w-full bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px disabled:opacity-60"
+            className="btn btn-primary w-full"
           >
             {isSubmitting ? "Placing your order…" : `Pay ${formatPrice(totals.total)}`}
           </button>

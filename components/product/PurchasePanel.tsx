@@ -89,23 +89,23 @@ export function PurchasePanel({ slug, name, brandName, concentration, sizes }: P
 
   return (
     <div>
-      <p className="text-body tabular-nums" aria-live="polite">
+      <p className="font-display text-[28px] leading-none tabular-nums" aria-live="polite">
         {formatPrice(size.price)}
       </p>
-      <p className="text-caption">
+      <p className="pt-6 text-caption text-muted">
         {concentrationLabel[sizeConcentration]}, {size.ml} ml
       </p>
 
       <fieldset className="pt-20">
-        <legend className="pb-7 text-caption uppercase">Size</legend>
-        <div className="grid grid-cols-2 border-s border-t border-soot sm:grid-cols-3">
+        <legend className="label pb-10 text-muted">Size</legend>
+        <div className="flex flex-wrap gap-10">
           {sizes.map((s, i) => {
             const out = s.stock <= 0;
             return (
               <label
                 key={`${s.ml}-${s.concentration ?? ""}`}
-                className={`relative flex min-h-[56px] cursor-pointer flex-col items-center justify-center border-b border-e border-soot bg-limestone px-6 text-center has-checked:bg-soot has-checked:text-limestone has-focus-visible:outline has-focus-visible:outline-1 has-focus-visible:-outline-offset-4 ${
-                  out ? "cursor-default text-soot/50" : ""
+                className={`relative flex min-h-[52px] min-w-[104px] cursor-pointer flex-col items-center justify-center rounded-pill border border-ink/30 px-20 text-center hover:border-ink has-checked:border-ink has-checked:bg-ink has-checked:text-canvas has-focus-visible:outline has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-strong ${
+                  out ? "cursor-default border-dashed text-muted" : ""
                 }`}
               >
                 <input
@@ -138,7 +138,7 @@ export function PurchasePanel({ slug, name, brandName, concentration, sizes }: P
           type="button"
           onClick={addToBag}
           disabled={soldOut}
-          className="min-h-[52px] w-full bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px disabled:opacity-40"
+          className="btn btn-primary w-full"
         >
           {soldOut ? "Sold out" : `Add to bag, ${formatPrice(size.price)}`}
         </button>
@@ -166,7 +166,7 @@ export function PurchasePanel({ slug, name, brandName, concentration, sizes }: P
         )}
       </p>
 
-      <div className="border-t border-soot pt-13">
+      <div className="border-t border-line pt-13">
         <DeliveryEstimate />
       </div>
 
@@ -174,7 +174,7 @@ export function PurchasePanel({ slug, name, brandName, concentration, sizes }: P
       <div
         aria-hidden={!barVisible}
         inert={!barVisible}
-        className={`fixed inset-x-0 bottom-0 z-30 flex items-center gap-13 border-t border-soot bg-limestone px-16 py-7 transition-transform duration-[var(--duration-base)] ease-luxe lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-30 flex items-center gap-13 border-t border-line bg-canvas px-16 py-7 transition-transform duration-[var(--duration-base)] ease-luxe lg:hidden ${
           barVisible ? "translate-y-0" : "translate-y-full"
         }`}
       >
@@ -188,7 +188,7 @@ export function PurchasePanel({ slug, name, brandName, concentration, sizes }: P
           type="button"
           onClick={addToBag}
           disabled={soldOut}
-          className="min-h-touch shrink-0 bg-graphite px-20 text-body-sm text-chalk disabled:opacity-40"
+          className="btn btn-primary shrink-0"
         >
           {soldOut ? "Sold out" : "Add to bag"}
         </button>

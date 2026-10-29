@@ -6,12 +6,12 @@ export function Meter({ label, value, words }: MeterProps) {
   return (
     <div>
       <div className="flex items-baseline justify-between pb-7">
-        <span className="text-caption uppercase">{label}</span>
-        <span className="text-body-sm">{word}</span>
+        <span className="label text-muted">{label}</span>
+        <span className="font-display text-title">{word}</span>
       </div>
-      <div role="meter" aria-label={label} aria-valuemin={1} aria-valuemax={5} aria-valuenow={value} aria-valuetext={word} className="flex gap-4">
+      <div role="meter" aria-label={label} aria-valuemin={1} aria-valuemax={5} aria-valuenow={value} aria-valuetext={word} className="flex gap-6">
         {Array.from({ length: 5 }, (_, i) => (
-          <span key={i} className={`h-[6px] flex-1 border border-soot ${i < value ? "bg-soot" : ""}`} />
+          <span key={i} className={`h-[3px] flex-1 rounded-pill ${i < value ? "bg-accent" : "bg-line"}`} />
         ))}
       </div>
     </div>

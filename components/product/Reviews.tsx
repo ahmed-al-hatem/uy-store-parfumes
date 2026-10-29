@@ -15,18 +15,18 @@ export function Reviews({ reviews, rating }: { reviews: Review[]; rating: number
             Reviews
           </h2>
           <p className="flex items-center gap-10 pt-13">
-            <span className="text-subheading tabular-nums">{rating.toFixed(1)}</span>
+            <span className="text-display tabular-nums">{rating.toFixed(1)}</span>
             <Stars rating={rating} size={14} />
           </p>
-          <p className="text-caption">
+          <p className="text-caption text-muted">
             {rating.toFixed(1)} out of 5, from {reviews.length} {reviews.length === 1 ? "review" : "reviews"}
           </p>
           <dl className="max-w-[360px] pt-17">
             {counts.map(({ star, count }) => (
               <div key={star} className="grid grid-cols-[56px_1fr_24px] items-center gap-10 py-4 text-caption">
                 <dt>{star} {star === 1 ? "star" : "stars"}</dt>
-                <dd className="h-[6px] border border-soot" aria-hidden="true">
-                  <span className="block h-full origin-left bg-soot" style={{ transform: `scaleX(${count / max})` }} />
+                <dd className="h-[3px] overflow-hidden rounded-pill bg-line" aria-hidden="true">
+                  <span className="block h-full origin-left bg-accent" style={{ transform: `scaleX(${count / max})` }} />
                 </dd>
                 <dd className="text-end tabular-nums">{count}</dd>
               </div>

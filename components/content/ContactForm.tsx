@@ -53,7 +53,7 @@ export function ContactForm() {
           rows={6}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? `${id}-err` : undefined}
-          className="block w-full rounded-input border border-soot bg-transparent p-12 text-body-sm aria-[invalid=true]:border-2"
+          className="block w-full rounded-input border border-ink/40 bg-transparent p-12 text-body-sm aria-[invalid=true]:border-2"
         />
         {errors.message && (
           <p id={`${id}-err`} role="alert" className="pt-4 text-caption">
@@ -64,7 +64,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state === "sending"}
-        className="mt-7 min-h-[52px] bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px disabled:opacity-60"
+        className="btn btn-primary mt-7"
       >
         {state === "sending" ? "Sending…" : "Send message"}
       </button>

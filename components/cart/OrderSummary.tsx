@@ -28,7 +28,7 @@ export function OrderSummary({ totals, shippingLabel = "Delivery" }: OrderSummar
           <dd className="tabular-nums">{formatPrice(totals.giftWrap)}</dd>
         </div>
       )}
-      <div className="mt-7 flex items-baseline justify-between gap-13 border-t border-soot pt-10">
+      <div className="mt-7 flex items-baseline justify-between gap-13 border-t border-line pt-10">
         <dt className="text-body">Total</dt>
         <dd className="text-subheading tabular-nums tracking-display">{formatPrice(totals.total)}</dd>
       </div>

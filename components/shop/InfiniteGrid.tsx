@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProductCard, ProductCardSkeleton } from "@/components/product/ProductCard";
 import { PAGE_SIZE } from "@/lib/shop/query";
 import type { ProductSummary } from "@/lib/types";
@@ -15,7 +15,8 @@ type InfiniteGridProps = {
 };
 
 /**
- * 5 / 3 / 2-column grid with 1px Soot dividers (DESIGN.md "Product Grid").
+ * 5 / 3 / 2-column grid with gutters. Cards present on first paint stay still
+ * (they replace the server-rendered page); every card loaded later rises in.
  * An IntersectionObserver loads the next page before the end is reached;
  * the "Load more" link stays as a fallback for keyboards and old browsers.
  */
@@ -23,6 +24,7 @@ export function InfiniteGrid({ items, total, loading, loadingMore, onLoadMore }:
   const sentinel = useRef<HTMLDivElement>(null);
   const hasMore = !loading && items.length < total;
   const onLoadMoreRef = useRef(onLoadMore);
+  const [firstPaint] = useState(() => new Set(items.map((p) => p.slug)));
 
   useEffect(() => {
     onLoadMoreRef.current = onLoadMore;
@@ -40,24 +42,29 @@ export function InfiniteGrid({ items, total, loading, loadingMore, onLoadMore }:
 
   const skeletons = (n: number) =>
     Array.from({ length: n }, (_, i) => (
-      <li key={`s${i}`} className="border-b border-e border-soot">
+      <li key={`s${i}`}>
         <ProductCardSkeleton />
       </li>
     ));
 
   return (
     <div>
-      <div className="overflow-hidden border-t border-soot">
+      <div className="px-gutter">
         <ul
-          className="grid w-[calc(100%+1px)] grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
+          className="grid grid-cols-2 gap-x-gutter gap-y-32 sm:grid-cols-3 lg:grid-cols-5"
           aria-busy={loading || loadingMore}
           aria-label="Fragrances"
         >
           {loading
             ? skeletons(PAGE_SIZE)
             : items.map((product, i) => (
-                <li key={product.slug} className="border-b border-e border-soot">
-                  <ProductCard product={product} preload={i < 2} headingLevel={2} />
+                <li key={product.slug}>
+                  <ProductCard
+                    product={product}
+                    preload={i < 2}
+                    headingLevel={2}
+                    index={firstPaint.has(product.slug) ? undefined : i % PAGE_SIZE}
+                  />
                 </li>
               ))}
           {loadingMore && skeletons(Math.min(PAGE_SIZE, total - items.length))}

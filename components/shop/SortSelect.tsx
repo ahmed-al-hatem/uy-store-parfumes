@@ -21,7 +21,7 @@ export function SortSelect({ value, onChange }: SortSelectProps) {
           position="popper"
           align="end"
           sideOffset={4}
-          className="z-50 min-w-[220px] border border-soot bg-limestone data-[state=open]:animate-fade-in"
+          className="z-50 min-w-[220px] border border-line bg-canvas data-[state=open]:animate-fade-in"
         >
           <Select.Viewport className="py-6">
             {SORTS.map((key) => (

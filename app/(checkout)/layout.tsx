@@ -5,7 +5,7 @@ import { StoreHydrator } from "@/components/layout/StoreHydrator";
 export default function CheckoutLayout({ children }: LayoutProps<"/">) {
   return (
     <>
-      <header className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-soot px-16 lg:px-32">
+      <header className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-line px-16 lg:px-32">
         <Link href="/cart" className="inline-flex min-h-touch items-center text-caption uppercase decoration-1 underline-offset-4 hover:underline">
           <span aria-hidden="true">←&nbsp;</span>Bag
         </Link>

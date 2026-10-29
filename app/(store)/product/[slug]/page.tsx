@@ -94,7 +94,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
       />
 
       <nav aria-label="Breadcrumb" className="px-16 py-10 lg:px-32">
-        <ol className="flex flex-wrap gap-x-7 text-caption">
+        <ol className="flex flex-wrap gap-x-7 text-caption text-muted">
           <li>
             <Link href="/shop" className="decoration-1 underline-offset-4 hover:underline">
               Shop
@@ -113,21 +113,21 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
         </ol>
       </nav>
 
-      <div className="border-t border-soot lg:grid lg:grid-cols-2">
-        <div className="lg:border-e lg:border-soot">
+      <div className="lg:grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+        <div className="lg:ps-gutter">
           <Gallery images={product.images} name={fullName} />
         </div>
 
-        <div className="px-16 pb-30 pt-30 lg:sticky lg:top-[var(--header-h)] lg:self-start lg:px-32 lg:pt-32">
-          <Link href={`/shop?brand=${product.brand}`} className="text-caption uppercase decoration-1 underline-offset-4 hover:underline">
+        <div className="px-16 pb-30 pt-30 lg:sticky lg:top-[var(--header-h)] lg:self-start lg:px-48 lg:pt-48">
+          <Link href={`/shop?brand=${product.brand}`} className="label link-grow text-accent-strong">
             {product.brandName}
           </Link>
-          <h1 className="pt-7 text-subheading tracking-display lg:text-heading">
+          <h1 className="pt-10 text-heading">
             {product.letter && <span className="sr-only">UY </span>}
             {product.name}
           </h1>
           {product.reviewCount > 0 && (
-            <a href="#reviews" className="mt-10 inline-flex min-h-touch items-center gap-7 text-caption decoration-1 underline-offset-4 hover:underline">
+            <a href="#reviews" className="mt-6 inline-flex min-h-touch items-center gap-10 text-caption text-muted hover:text-ink">
               <Stars rating={product.rating} />
               <span>
                 {product.rating.toFixed(1)} from {product.reviewCount} reviews
@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
             </a>
           )}
 
-          <div className="pt-13">
+          <div className="pt-20">
             <PurchasePanel
               slug={product.slug}
               name={product.name}
@@ -157,7 +157,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
                       <dl className="grid grid-cols-[96px_1fr] gap-x-13 gap-y-6 pt-17">
                         {details.map(([k, v]) => (
                           <div key={k} className="contents">
-                            <dt className="text-caption uppercase">{k}</dt>
+                            <dt className="label pt-[3px] text-muted">{k}</dt>
                             <dd>{v}</dd>
                           </div>
                         ))}
@@ -172,7 +172,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
                     <dl className="grid grid-cols-[96px_1fr] gap-x-13 gap-y-6">
                       {(["top", "heart", "base"] as const).map((tier) => (
                         <div key={tier} className="contents">
-                          <dt className="text-caption uppercase">{tier}</dt>
+                          <dt className="label pt-[3px] text-muted">{tier}</dt>
                           <dd>{product.notes[tier].join(", ")}</dd>
                         </div>
                       ))}
@@ -209,7 +209,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
         </div>
       </div>
 
-      <section aria-labelledby="composition-title" className="border-t border-soot px-16 pt-section lg:px-32">
+      <section aria-labelledby="composition-title" className="mt-section bg-surface px-16 py-section lg:px-32">
         <h2 id="composition-title" className="text-subheading tracking-display">
           How it unfolds
         </h2>

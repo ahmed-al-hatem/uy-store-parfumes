@@ -27,9 +27,11 @@ export function CardActions({ product }: { product: ProductSummary }) {
         onClick={() => toggle(product.slug)}
         aria-pressed={saved}
         aria-label={saved ? `Remove ${label} from wishlist` : `Save ${label} to wishlist`}
-        className="absolute end-0 top-0 z-10 inline-flex size-[44px] items-center justify-center"
+        className="group/heart absolute end-6 top-6 z-10 inline-flex size-[44px] items-center justify-center"
       >
-        <HeartIcon filled={saved} />
+        <span className="inline-flex size-[34px] items-center justify-center rounded-pill bg-canvas/90 text-ink transition-transform duration-[var(--duration-base)] ease-luxe group-hover/heart:scale-110 group-active/heart:scale-95">
+          <HeartIcon filled={saved} />
+        </span>
       </button>
       <button
         type="button"
@@ -37,7 +39,7 @@ export function CardActions({ product }: { product: ProductSummary }) {
           setLoaded(true);
           setOpen(true);
         }}
-        className="absolute inset-x-10 bottom-10 z-10 hidden min-h-touch items-center justify-center bg-limestone text-caption uppercase opacity-0 transition-opacity duration-[var(--duration-base)] ease-quiet focus-visible:opacity-100 group-hover:opacity-100 pointer-fine:flex"
+        className="label absolute inset-x-[10%] bottom-[10%] z-10 hidden min-h-[40px] translate-y-6 items-center justify-center rounded-pill bg-canvas/95 text-ink opacity-0 transition-[opacity,transform] duration-[var(--duration-base)] ease-luxe hover:bg-canvas focus-visible:translate-y-0 focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 pointer-fine:flex"
         aria-label={`Quick view, ${label}`}
       >
         Quick view

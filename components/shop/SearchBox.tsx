@@ -181,7 +181,7 @@ export function SearchBox({ value, onQuery, onBrand, onNote }: SearchBoxProps) {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-13 border-b border-soot px-16 lg:px-32">
+      <div className="flex items-center gap-13 border-b border-line px-16 lg:px-32">
         <SearchIcon aria-hidden="true" />
         <label htmlFor={`${id}-input`} className="sr-only">
           Search by name, house or note
@@ -206,7 +206,7 @@ export function SearchBox({ value, onQuery, onBrand, onNote }: SearchBoxProps) {
           }}
           onBlur={() => setOpen(false)}
           onKeyDown={onKeyDown}
-          className="min-h-[52px] w-full bg-transparent text-body placeholder:text-soot/60 focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+          className="min-h-[52px] w-full bg-transparent text-body placeholder:text-muted focus:outline-none [&::-webkit-search-cancel-button]:hidden"
         />
         {text && (
           <button type="button" onClick={() => change("")} aria-label="Clear search" className="inline-flex min-h-touch min-w-touch items-center justify-end">
@@ -220,7 +220,7 @@ export function SearchBox({ value, onQuery, onBrand, onNote }: SearchBoxProps) {
         role="listbox"
         aria-label={trimmed ? "Suggestions" : "Recent searches"}
         hidden={!expanded}
-        className="absolute inset-x-0 top-full z-30 max-h-[70dvh] overflow-y-auto border-b border-soot bg-limestone py-10 data-[open=true]:animate-fade-in"
+        className="absolute inset-x-0 top-full z-30 max-h-[70dvh] overflow-y-auto border-b border-line bg-canvas py-10 data-[open=true]:animate-fade-in"
         data-open={expanded}
       >
         {!trimmed && (

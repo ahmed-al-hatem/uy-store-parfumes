@@ -16,13 +16,13 @@ export function NotesPyramid({ notes }: { notes: Notes }) {
   return (
     <dl className="flex flex-col items-center">
       {tiers.map((tier) => (
-        <div key={tier.key} className={`${tier.width} border-t border-soot px-10 py-17 text-center last:border-b`}>
-          <dt className="text-caption uppercase">
+        <div key={tier.key} className={`${tier.width} border-t border-line px-10 py-17 text-center last:border-b`}>
+          <dt className="label text-accent-strong">
             {tier.label}
             <span className="sr-only">, {tier.when.toLowerCase()}</span>
           </dt>
-          <dd className="pt-6 text-body-sm">{notes[tier.key].map(capitalise).join(", ")}</dd>
-          <dd className="pt-4 text-caption max-sm:hidden" aria-hidden="true">
+          <dd className="font-display pt-6 text-title">{notes[tier.key].map(capitalise).join(", ")}</dd>
+          <dd className="pt-4 text-caption text-muted max-sm:hidden" aria-hidden="true">
             {tier.when}
           </dd>
         </div>

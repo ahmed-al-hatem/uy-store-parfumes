@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Order confirmed", robots: { index: f
 
 export default function ConfirmationPage() {
   return (
-    <Suspense fallback={<div className="h-[60dvh] animate-breathe bg-chalk" aria-busy="true" />}>
+    <Suspense fallback={<div className="h-[60dvh] animate-breathe bg-surface" aria-busy="true" />}>
       <ConfirmationView />
     </Suspense>
   );

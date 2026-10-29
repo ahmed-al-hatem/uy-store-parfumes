@@ -4,8 +4,9 @@ import { useId, useState, type FormEvent } from "react";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Underline input with a JOIN text action (DESIGN.md "Newsletter Input"). Mock: nothing is sent. */
-export function NewsletterForm() {
+/** Underline input with a Join action; `tone="dark"` for the ink footer. Mock: nothing is sent. */
+export function NewsletterForm({ tone = "light" }: { tone?: "light" | "dark" }) {
+  const dark = tone === "dark";
   const id = useId();
   const [status, setStatus] = useState<"idle" | "invalid" | "joined">("idle");
 
@@ -28,7 +29,7 @@ export function NewsletterForm() {
       <label htmlFor={id} className="sr-only">
         E-mail
       </label>
-      <div className="flex items-end gap-13 rounded-input border-b border-soot">
+      <div className={`flex items-end gap-13 border-b ${dark ? "border-canvas/50" : "border-ink/50"}`}>
         <input
           id={id}
           name="email"
@@ -37,10 +38,10 @@ export function NewsletterForm() {
           placeholder="E-mail"
           aria-invalid={status === "invalid"}
           aria-describedby={status === "invalid" ? `${id}-error` : undefined}
-          className="min-h-touch w-full bg-transparent text-body-sm placeholder:text-soot focus:outline-none"
+          className={`min-h-[48px] w-full bg-transparent text-body focus:outline-none ${dark ? "placeholder:text-canvas/60" : "placeholder:text-muted"}`}
           onChange={() => status === "invalid" && setStatus("idle")}
         />
-        <button type="submit" className="min-h-touch text-body-sm uppercase decoration-1 underline-offset-4 hover:underline">
+        <button type="submit" className="label link-grow min-h-touch">
           Join
         </button>
       </div>

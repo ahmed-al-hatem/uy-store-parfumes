@@ -17,9 +17,9 @@ export function HeroFrame({ image, alt }: { image: SourceImage; alt: string }) {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "6%"]);
 
   return (
-    <div ref={ref} className="overflow-hidden" style={{ backgroundColor: image.frame }}>
+    <div ref={ref} className="overflow-hidden">
       <m.div style={{ scale, y }} className="will-change-transform">
-        <ProductFrame image={image} alt={alt} sizes="(min-width: 1024px) 50vw, 100vw" preload />
+        <ProductFrame image={image} alt={alt} sizes="(min-width: 1024px) 50vw, 100vw" preload matted />
       </m.div>
     </div>
   );

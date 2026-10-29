@@ -8,9 +8,9 @@ export type AccordionSection = { id: string; title: string; content: ReactNode }
 /** Description, notes, shipping and returns. Description starts open. */
 export function ProductAccordions({ sections }: { sections: AccordionSection[] }) {
   return (
-    <Accordion.Root type="multiple" defaultValue={[sections[0]?.id]} className="border-t border-soot">
+    <Accordion.Root type="multiple" defaultValue={[sections[0]?.id]} className="border-t border-line">
       {sections.map((s) => (
-        <Accordion.Item key={s.id} value={s.id} className="border-b border-soot">
+        <Accordion.Item key={s.id} value={s.id} className="border-b border-line">
           {/* h2: these sit directly under the page h1 (product and FAQ pages). */}
           <Accordion.Header asChild>
             <h2>

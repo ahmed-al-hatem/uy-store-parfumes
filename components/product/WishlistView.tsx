@@ -29,18 +29,18 @@ export function WishlistView() {
         )}
       </section>
       {(!hydrated || slugs.length > 0) && (
-        <div className="overflow-hidden border-t border-soot">
-          <ul className="grid w-[calc(100%+1px)] grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" aria-busy={!hydrated || loading}>
+        <div className="px-gutter">
+          <ul className="grid grid-cols-2 gap-x-gutter gap-y-32 sm:grid-cols-3 lg:grid-cols-5" aria-busy={!hydrated || loading}>
             {!hydrated
               ? Array.from({ length: 5 }, (_, i) => (
-                  <li key={i} className="border-b border-e border-soot">
+                  <li key={i}>
                     <ProductCardSkeleton />
                   </li>
                 ))
               : slugs.map((slug) => {
                   const p = products.get(slug);
                   return (
-                    <li key={slug} className="border-b border-e border-soot">
+                    <li key={slug}>
                       {p ? <ProductCard product={p} headingLevel={2} /> : <ProductCardSkeleton />}
                     </li>
                   );

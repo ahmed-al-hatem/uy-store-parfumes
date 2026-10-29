@@ -13,7 +13,7 @@ export function FreeShippingBar({ totals }: { totals: Totals }) {
           : `${formatPrice(totals.toFreeShipping)} away from free delivery.`}
       </p>
       <div
-        className="h-[4px] border border-soot"
+        className="h-[4px] border border-line"
         role="progressbar"
         aria-label="Progress to free delivery"
         aria-valuemin={0}
@@ -21,7 +21,7 @@ export function FreeShippingBar({ totals }: { totals: Totals }) {
         aria-valuenow={Math.round(progress * threshold)}
       >
         <div
-          className="h-full origin-left bg-soot transition-transform duration-[var(--duration-slow)] ease-luxe rtl:origin-right"
+          className="h-full origin-left bg-ink transition-transform duration-[var(--duration-slow)] ease-luxe rtl:origin-right"
           style={{ transform: `scaleX(${progress})` }}
         />
       </div>

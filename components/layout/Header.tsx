@@ -3,18 +3,18 @@ import { HeartIcon, PersonIcon, SearchIcon } from "@/components/ui/icons";
 import { productImages } from "@/data/product-images.generated";
 import { utilityLinks } from "@/lib/navigation";
 import { CartLink } from "./CartLink";
+import { HeaderShell } from "./HeaderShell";
 import { MobileMenu } from "./MobileMenu";
 import { NavItem } from "./NavItem";
 import { ShopMenu } from "./ShopMenu";
 
-const iconLink =
-  "inline-flex min-h-touch min-w-touch items-center justify-center decoration-1 underline-offset-4 hover:underline";
+const iconLink = "inline-flex min-h-touch min-w-touch items-center justify-center text-ink hover:text-accent-strong";
 
-/** Three zones: categories start, wordmark centre, utilities end (DESIGN.md "Main Navigation"). */
+/** Three zones: categories start, serif wordmark centre, utilities end. */
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-soot bg-limestone">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center px-16 lg:px-32">
+    <HeaderShell>
+      <div className="grid min-h-[var(--header-h)] grid-cols-[1fr_auto_1fr] items-center px-16 lg:px-32">
         <div className="flex items-center">
           <div className="lg:hidden">
             <MobileMenu />
@@ -24,15 +24,15 @@ export function Header() {
           </div>
         </div>
 
-        <Link href="/" className="inline-flex min-h-touch items-center px-16 text-subheading tracking-display" aria-label="UY Studio, home">
+        <Link href="/" className="font-display inline-flex min-h-touch items-center px-16 text-[34px] leading-none tracking-[0.08em]" aria-label="UY Studio, home">
           UY
         </Link>
 
-        <nav aria-label="Utilities" className="flex items-center justify-end lg:gap-13">
+        <nav aria-label="Utilities" className="flex items-center justify-end lg:gap-20">
           <Link href="/shop?focus=search" className={`${iconLink} lg:hidden`} aria-label="Search">
             <SearchIcon />
           </Link>
-          <div className="hidden items-center gap-13 lg:flex">
+          <div className="hidden items-center gap-20 lg:flex">
             <NavItem href="/shop?focus=search">Search</NavItem>
             {utilityLinks.map((link) => (
               <NavItem key={link.href} href={link.href}>
@@ -50,6 +50,6 @@ export function Header() {
           <CartLink />
         </nav>
       </div>
-    </header>
+    </HeaderShell>
   );
 }

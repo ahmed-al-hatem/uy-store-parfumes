@@ -139,7 +139,7 @@ export function ShopView({ initial, category, heading, intro, popular }: ShopVie
         onNote={(note) => change({ q: null, notes: params.notes.includes(note) ? params.notes : [...params.notes, note] })}
       />
 
-      <div className="sticky top-[var(--header-h)] z-20 flex items-center justify-between gap-13 border-b border-soot bg-limestone px-16 lg:px-32">
+      <div className="sticky-under-header sticky top-[var(--header-h)] z-20 flex items-center justify-between gap-13 border-b border-line bg-canvas px-16 lg:px-32">
         <FilterDrawer
           params={params}
           facets={data.facets}
@@ -202,7 +202,7 @@ function EmptyState({
   pathname: string;
 }) {
   return (
-    <section aria-labelledby="empty-title" className="border-t border-soot">
+    <section aria-labelledby="empty-title" className="border-t border-line">
       <div className="px-16 py-section lg:px-32">
         <h2 id="empty-title" className="text-subheading tracking-display">
           Nothing on the shelf matches.
@@ -234,10 +234,10 @@ function EmptyState({
         </ul>
       </div>
       <h3 className="px-16 pb-13 text-caption uppercase lg:px-32">Most loved this season</h3>
-      <div className="overflow-hidden border-t border-soot">
-        <ul className="grid w-[calc(100%+1px)] grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="px-gutter">
+        <ul className="grid grid-cols-2 gap-x-gutter gap-y-32 sm:grid-cols-3 lg:grid-cols-5">
           {popular.map((p) => (
-            <li key={p.slug} className="border-b border-e border-soot">
+            <li key={p.slug}>
               <ProductCard product={p} />
             </li>
           ))}

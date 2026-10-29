@@ -1,7 +1,7 @@
 import { forwardRef, useId, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes } from "react";
 
 const control =
-  "block min-h-[48px] w-full rounded-input border border-soot bg-transparent px-12 text-body-sm placeholder:text-soot/50 focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 aria-[invalid=true]:border-2";
+  "block min-h-[48px] w-full rounded-input border border-ink/40 bg-transparent px-12 text-body-sm placeholder:text-muted focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 aria-[invalid=true]:border-2";
 
 type FieldShellProps = { label: string; error?: string; hint?: string; id: string; children: ReactNode; className?: string };
 

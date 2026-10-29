@@ -16,18 +16,19 @@ export function ShopMenu({ featured }: { featured: SourceImage }) {
     <NavigationMenu.Root className="static" aria-label="Shop">
       <NavigationMenu.List className="flex items-center gap-13">
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="group inline-flex min-h-touch items-center text-caption uppercase decoration-1 underline-offset-4 hover:underline data-[state=open]:underline">
-            Shop&nbsp;<span aria-hidden="true">▾</span>
+          <NavigationMenu.Trigger className="group inline-flex min-h-touch items-center">
+            <span className="label link-grow text-muted hover:text-ink group-data-[state=open]:text-ink">Shop</span>
+            <span aria-hidden="true" className="ms-4 text-[10px] text-muted transition-transform duration-[var(--duration-base)] group-data-[state=open]:rotate-180">▾</span>
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="grid grid-cols-4 gap-32 px-32 py-30 data-[state=open]:animate-fade-in">
+          <NavigationMenu.Content className="grid grid-cols-4 gap-48 px-32 py-48 data-[state=open]:animate-fade-in">
             {shopMenu.map((group) => (
               <div key={group.title}>
-                <p className="pb-10 text-caption uppercase">{group.title}</p>
+                <p className="text-title pb-13">{group.title}</p>
                 <ul>
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <NavigationMenu.Link asChild>
-                        <Link href={link.href} className="block py-4 text-body-sm decoration-1 underline-offset-4 hover:underline">
+                        <Link href={link.href} className="link-grow inline-block py-6 text-body-sm text-muted hover:text-ink">
                           {link.label}
                         </Link>
                       </NavigationMenu.Link>
@@ -37,9 +38,9 @@ export function ShopMenu({ featured }: { featured: SourceImage }) {
               </div>
             ))}
             <NavigationMenu.Link asChild>
-              <Link href="/product/maison-margiela-replica-jazz-club" className="group/feature block">
-                <ProductFrame image={featured} alt="Maison Margiela Replica Jazz Club, bottle beside its box" sizes="20vw" />
-                <span className="block pt-10 text-body-sm decoration-1 underline-offset-4 group-hover/feature:underline">
+              <Link href="/product/maison-margiela-replica-jazz-club" className="group block">
+                <ProductFrame image={featured} alt="Maison Margiela Replica Jazz Club, bottle beside its box" sizes="20vw" matted zoom />
+                <span className="font-display block pt-13 text-title">
                   Jazz Club, rum and tobacco leaf
                 </span>
               </Link>
@@ -54,7 +55,7 @@ export function ShopMenu({ featured }: { featured: SourceImage }) {
           </NavigationMenu.Item>
         ))}
       </NavigationMenu.List>
-      <NavigationMenu.Viewport className="absolute inset-x-0 top-full border-b border-soot bg-limestone data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
+      <NavigationMenu.Viewport className="absolute inset-x-0 top-full border-b border-line bg-canvas shadow-float data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
     </NavigationMenu.Root>
   );
 }

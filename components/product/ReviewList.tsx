@@ -14,22 +14,22 @@ export function ReviewList({ reviews }: { reviews: Review[] }) {
 
   return (
     <div>
-      <ul className="border-t border-soot">
+      <ul className="border-t border-line">
         {shown.map((r) => (
-          <li key={r.id} className="border-b border-soot py-20">
+          <li key={r.id} className="border-b border-line py-20">
             <article>
               <div className="flex flex-wrap items-center justify-between gap-x-13 gap-y-4">
                 <span className="flex items-center gap-10">
                   <Stars rating={r.rating} />
                   <span className="sr-only">{r.rating} out of 5 stars.</span>
-                  <h3 className="text-body-sm">{r.title}</h3>
+                  <h3 className="text-title">{r.title}</h3>
                 </span>
-                <time dateTime={r.date} className="text-caption">
+                <time dateTime={r.date} className="text-caption text-muted">
                   {dateFormat.format(new Date(`${r.date}T12:00:00`))}
                 </time>
               </div>
-              <p className="max-w-[64ch] pt-7 text-body-sm">{r.body}</p>
-              <p className="pt-7 text-caption">
+              <p className="font-display max-w-[60ch] pt-10 text-[20px] leading-[1.45]">{r.body}</p>
+              <p className="label pt-10 text-muted">
                 {r.author}, {r.location}
                 {r.verified && ", verified purchase"}
               </p>
@@ -42,7 +42,7 @@ export function ReviewList({ reviews }: { reviews: Review[] }) {
           type="button"
           onClick={() => setAll((v) => !v)}
           aria-expanded={all}
-          className="mt-13 min-h-touch text-caption uppercase underline decoration-1 underline-offset-4"
+          className="btn btn-secondary mt-20"
         >
           {all ? "Show fewer reviews" : `Show all ${reviews.length} reviews`}
         </button>

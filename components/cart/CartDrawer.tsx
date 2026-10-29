@@ -21,9 +21,9 @@ export function CartDrawer() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-soot/30 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
-        <Dialog.Content className="fixed inset-y-0 end-0 z-50 flex w-[min(100vw,440px)] flex-col border-s border-soot bg-limestone data-[state=closed]:animate-drawer-out-end data-[state=open]:animate-drawer-in-end">
-          <div className="flex items-center justify-between border-b border-soot px-16">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/40 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
+        <Dialog.Content className="fixed inset-y-0 end-0 z-50 flex w-[min(100vw,440px)] flex-col border-s border-line bg-canvas shadow-float data-[state=closed]:animate-drawer-out-end data-[state=open]:animate-drawer-in-end">
+          <div className="flex items-center justify-between border-b border-line px-16">
             <Dialog.Title className="text-caption uppercase">
               Your bag{count > 0 && <span className="normal-case"> ({count})</span>}
             </Dialog.Title>
@@ -53,10 +53,10 @@ export function CartDrawer() {
                 {ready ? (
                   <CartLines priced={priced} compact onNavigate={close} />
                 ) : (
-                  <div className="h-[120px] animate-breathe border-y border-soot bg-chalk" aria-label="Loading your bag" />
+                  <div className="h-[120px] animate-breathe border-y border-line bg-surface" aria-label="Loading your bag" />
                 )}
               </div>
-              <div className="border-t border-soot px-16 pb-16 pt-13">
+              <div className="border-t border-line px-16 pb-16 pt-13">
                 <OrderSummary totals={totals} />
                 <button
                   type="button"
@@ -65,7 +65,7 @@ export function CartDrawer() {
                     close();
                     router.push("/checkout");
                   }}
-                  className="mt-13 min-h-[52px] w-full bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px disabled:opacity-40"
+                  className="btn btn-primary mt-13 w-full"
                 >
                   Checkout
                 </button>

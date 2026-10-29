@@ -73,11 +73,11 @@ function AuthForms({ onSignedIn }: { onSignedIn: (s: Session) => void }) {
   }
 
   const submitClass =
-    "mt-17 min-h-[52px] w-full bg-graphite px-16 text-body-sm text-chalk transition-transform duration-[var(--duration-fast)] active:translate-y-px disabled:opacity-60";
+    "btn btn-primary mt-17 w-full";
 
   return (
     <Tabs.Root defaultValue="login" className="max-w-[440px]" onValueChange={() => setErrors({})}>
-      <Tabs.List className="flex gap-30 border-b border-soot" aria-label="Account">
+      <Tabs.List className="flex gap-30 border-b border-line" aria-label="Account">
         {["login", "register"].map((v) => (
           <Tabs.Trigger
             key={v}
@@ -113,7 +113,7 @@ function AuthForms({ onSignedIn }: { onSignedIn: (s: Session) => void }) {
 }
 
 function OrderHistory({ orders }: { orders: Order[] | null }) {
-  if (orders == null) return <div className="h-[160px] animate-breathe bg-chalk" aria-busy="true" />;
+  if (orders == null) return <div className="h-[160px] animate-breathe bg-surface" aria-busy="true" />;
   if (!orders.length) {
     return (
       <p className="text-body-sm">
@@ -125,9 +125,9 @@ function OrderHistory({ orders }: { orders: Order[] | null }) {
     );
   }
   return (
-    <ul className="border-t border-soot">
+    <ul className="border-t border-line">
       {orders.map((o) => (
-        <li key={o.number} className="border-b border-soot py-17">
+        <li key={o.number} className="border-b border-line py-17">
           <div className="flex flex-wrap items-baseline justify-between gap-x-13 gap-y-4">
             <Link href={`/checkout/confirmation?order=${o.number}`} className="text-body-sm underline decoration-1 underline-offset-4">
               Order {o.number}
@@ -154,7 +154,7 @@ export function AccountView() {
   const session = raw ? (JSON.parse(raw) as Session) : null;
   const orders = useOrders();
 
-  if (raw === null) return <div className="h-[50dvh] animate-breathe bg-chalk" aria-busy="true" />;
+  if (raw === null) return <div className="h-[50dvh] animate-breathe bg-surface" aria-busy="true" />;
 
   return (
     <div className="grid gap-section px-16 pb-section pt-30 lg:grid-cols-2 lg:gap-32 lg:px-32 lg:pt-32">

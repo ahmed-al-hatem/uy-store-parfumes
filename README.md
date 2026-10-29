@@ -2,7 +2,7 @@
 
 A front-end-only prototype of a luxury perfume store, built as an interactive client demo. All data is mocked; nothing is charged or sent. Every screen behaves like a shipped store: search, filters, infinite scroll, product pages, bag, checkout and confirmation.
 
-- **Design source:** [DESIGN.md](DESIGN.md) (binding). Every decision where it was silent or conflicted with the brief is in [DECISIONS.md](DECISIONS.md).
+- **Design:** started from [DESIGN.md](DESIGN.md); the client later replaced its grey palette and type with a warm ivory and bronze system with serif headings (DECISIONS.md D-44 to D-50). Every decision is in [DECISIONS.md](DECISIONS.md).
 - **Photos:** the client's originals in [`perfumes/`](perfumes), used unchanged. The inventory and grouping are in [IMAGES.md](IMAGES.md).
 
 ## Setup
@@ -25,7 +25,7 @@ Set `NEXT_PUBLIC_SITE_URL` in production so Open Graph, canonical URLs, the site
 | | Why |
 |---|---|
 | Next.js 16 (App Router, Cache Components) + TypeScript strict | Static generation for every shop, category and product page |
-| Tailwind CSS v4 | DESIGN.md tokens in `app/globals.css`; Tailwind's default colours, spacing, radii and shadows are cleared, so only DESIGN.md values exist |
+| Tailwind CSS v4 | Semantic tokens in `app/globals.css` (`canvas`, `surface`, `ink`, `muted`, `line`, `accent`, `accent-strong`); Tailwind's defaults are cleared, so only these values exist. Change the palette there. Fonts: Cormorant Garamond (headings) and DM Sans (body) in `app/layout.tsx` |
 | `radix-ui` | Accessible dialogs, drawers, navigation menu, select, accordion, tabs |
 | `motion` | Restrained animation via `LazyMotion` + `m` components, reduced-motion aware |
 | `zustand` | Bag and wishlist, persisted to `localStorage` |

@@ -6,7 +6,7 @@ import type { ComponentProps } from "react";
 
 type NavItemProps = ComponentProps<typeof Link> & { href: string };
 
-/** Uppercase 13px nav link: underline on hover, permanent underline when current (DESIGN.md). */
+/** Tracked uppercase nav label: muted, ink on hover, an underline that grows in; stays underlined when current. */
 export function NavItem({ href, className = "", children, ...props }: NavItemProps) {
   const pathname = usePathname();
   // Links that carry a query (e.g. ?focus=search) are actions, never "current".
@@ -15,10 +15,12 @@ export function NavItem({ href, className = "", children, ...props }: NavItemPro
     <Link
       href={href}
       aria-current={current ? "page" : undefined}
-      className={`inline-flex min-h-touch items-center text-caption uppercase decoration-1 underline-offset-4 hover:underline aria-[current=page]:underline ${className}`}
+      className={`inline-flex min-h-touch items-center ${className}`}
       {...props}
     >
-      {children}
+      <span className={`label link-grow ${current ? "is-current text-ink" : "text-muted hover:text-ink"}`}>
+        {children}
+      </span>
     </Link>
   );
 }

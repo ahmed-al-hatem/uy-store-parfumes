@@ -17,7 +17,7 @@ export function UndoNotice() {
   return (
     <div role="status" aria-live="polite">
       {removed && (
-        <p className="flex items-center justify-between gap-13 border-b border-soot py-10 text-body-sm">
+        <p className="flex items-center justify-between gap-13 border-b border-line py-10 text-body-sm">
           <span>{removed.name} removed.</span>
           <button type="button" onClick={undo} className="min-h-touch text-caption uppercase underline decoration-1 underline-offset-4">
             Undo
@@ -44,7 +44,7 @@ export function CartLines({ priced, compact = false, onNavigate }: { priced: Pri
 
   return (
     <div>
-      <ul className="border-t border-soot">
+      <ul className="border-t border-line">
         <AnimatePresence initial={false}>
         {priced.map((line, i) => (
           <m.li
@@ -52,7 +52,7 @@ export function CartLines({ priced, compact = false, onNavigate }: { priced: Pri
             layout="position"
             exit={{ opacity: 0, transition: { duration: DURATION.fast, ease: EASE_QUIET } }}
             transition={{ duration: DURATION.base, ease: EASE_LUXE }}
-            className="flex gap-13 border-b border-soot py-13"
+            className="flex gap-13 border-b border-line py-13"
           >
             <Link href={`/product/${line.slug}`} onClick={onNavigate} className={`${thumb} shrink-0`} tabIndex={-1} aria-hidden="true">
               <ProductFrame image={line.product.images[0]} alt="" sizes="128px" />

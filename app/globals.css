@@ -1,45 +1,60 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — taken from DESIGN.md (UY Studio style reference).
- * Tailwind's default palette, spacing, radii and shadows are cleared so only
- * DESIGN.md values exist as utilities. Anything DESIGN.md does not define is
- * logged in DECISIONS.md.
+ * Design tokens. The client replaced DESIGN.md's grey palette and single-weight
+ * type with a warm ivory and bronze system (DECISIONS.md D-44 onward).
+ * Names describe roles, so a palette change touches only this block.
+ * Tailwind's defaults are cleared so only these values exist as utilities.
  */
 @theme {
-  /* Colours: four warm greys, nothing else. */
   --color-*: initial;
-  --color-soot: #24241f;
-  --color-limestone: #d1d3cf;
-  --color-chalk: #e5e5e5;
-  --color-graphite: #333333;
+  --color-canvas: #f6f1ea; /* warm ivory page */
+  --color-surface: #ece3d7; /* sand: photo mats, alternate bands */
+  --color-surface-2: #e3d8c9; /* pressed and selected surfaces */
+  --color-ink: #1c1a17; /* text, icons, dark bands */
+  --color-muted: #6b6359; /* secondary text, 5.3:1 on canvas */
+  --color-line: #d9cebf; /* soft dividers */
+  --color-accent: #9a7547; /* bronze: decorative lines, stars, underlines */
+  --color-accent-strong: #7a5a33; /* bronze for text and fills, 5.6:1 with canvas */
+  --color-white: #fffdf9;
+  --color-transparent: transparent;
 
-  /* Type: one family, one weight (400). */
+  /* Serif display for headings and product names, DM Sans for everything else. */
   --font-*: initial;
   --font-gp: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", "Times New Roman", serif;
   --font-weight-*: initial;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
+  --font-weight-medium: 500;
 
   --text-*: initial;
   --text-caption: 13px;
   --text-caption--line-height: 1.5;
-  --text-caption--letter-spacing: 0.14px;
+  --text-caption--letter-spacing: 0.01em;
   --text-body-sm: 15px;
-  --text-body-sm--line-height: 1.5;
-  --text-body-sm--letter-spacing: 0.17px;
+  --text-body-sm--line-height: 1.55;
+  --text-body-sm--letter-spacing: 0.005em;
   --text-body: 16px;
-  --text-body--line-height: 1.77;
-  --text-body--letter-spacing: 0.011em;
-  --text-subheading: 30px;
-  --text-subheading--line-height: 1.2;
-  --text-subheading--letter-spacing: 1.17px;
-  --text-heading: 48px;
-  --text-heading--line-height: 1.1;
-  --text-heading--letter-spacing: 1.87px;
+  --text-body--line-height: 1.75;
+  --text-body--letter-spacing: 0.005em;
+  --text-title: 22px;
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: 0;
+  --text-subheading: 34px;
+  --text-subheading--line-height: 1.12;
+  --text-subheading--letter-spacing: -0.005em;
+  --text-heading: clamp(40px, 4.4vw, 64px);
+  --text-heading--line-height: 1.04;
+  --text-heading--letter-spacing: -0.01em;
+  --text-display: clamp(44px, 5.4vw, 84px);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.015em;
 
   --tracking-*: initial;
-  --tracking-body: 0.011em;
-  --tracking-display: 0.039em;
+  --tracking-body: 0.005em;
+  --tracking-display: -0.01em;
+  --tracking-label: 0.14em;
 
   /* Spacing: the DESIGN.md scale, plus its three layout values. */
   --spacing-*: initial;
@@ -60,17 +75,23 @@
   --spacing-30: 30px;
   --spacing-32: 32px;
   --spacing-143: 143px;
-  --spacing-section: 96px;
+  --spacing-section: clamp(80px, 9vw, 128px);
+  --spacing-gutter: clamp(16px, 2.2vw, 32px);
+  --spacing-48: 48px;
+  --spacing-64: 64px;
   --spacing-card: 16px;
   --spacing-element: 13px;
   --spacing-touch: 44px;
 
-  /* Radii: 0 everywhere, 3px on text inputs only. */
+  /* Radii: nearly square, pills only for chips and floating actions. */
   --radius-*: initial;
-  --radius-input: 3px;
+  --radius-input: 2px;
+  --radius-button: 2px;
+  --radius-pill: 999px;
 
-  /* No shadows in this system. */
+  /* One soft shadow, only for things that truly float (drawers, dialogs, menus). */
   --shadow-*: initial;
+  --shadow-float: 0 24px 64px -24px rgb(28 26 23 / 0.28);
   --inset-shadow-*: initial;
   --drop-shadow-*: initial;
   --text-shadow-*: initial;
@@ -129,8 +150,8 @@
 }
 
 :root {
-  /* Sticky header row: 44px touch target + 1px Soot rule. Sticky toolbars sit below it. */
-  --header-h: 45px;
+  /* Sticky header row height; sticky toolbars sit below it. */
+  --header-h: 64px;
   --duration-fast: 240ms;
   --duration-base: 480ms;
   --duration-slow: 900ms;
@@ -143,8 +164,8 @@
   }
 
   body {
-    background: var(--color-limestone);
-    color: var(--color-soot);
+    background: var(--color-canvas);
+    color: var(--color-ink);
     font-family: var(--font-gp);
     font-weight: 400;
     font-size: var(--text-body-sm);
@@ -153,18 +174,17 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Weight 400 is the only voice: no bold anywhere, including UA defaults. */
   b, strong, h1, h2, h3, h4, h5, h6, th {
     font-weight: 400;
   }
 
   ::selection {
-    background: var(--color-soot);
-    color: var(--color-limestone);
+    background: var(--color-accent-strong);
+    color: var(--color-canvas);
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-soot);
+    outline: 2px solid var(--color-accent-strong);
     outline-offset: 3px;
   }
 
@@ -175,5 +195,208 @@
       transition-duration: 1ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/*
+ * Headings take the serif display face; the size utilities above only set
+ * size, leading and tracking. Unlayered so it applies over the utilities.
+ */
+.text-display,
+.text-heading,
+.text-subheading,
+.text-title,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/* Small uppercase labels: slightly smaller, widely tracked, medium weight. */
+.text-caption.uppercase {
+  font-size: 11.5px;
+  letter-spacing: var(--tracking-label);
+  font-weight: 500;
+}
+
+/*
+ * Link underline that grows from the start edge on hover (transform only).
+ * Usage: class="link-grow" on an inline-block or flex link.
+ */
+.link-grow,
+.link-grow-target {
+  position: relative;
+}
+.link-grow::after,
+.link-grow-target::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-luxe);
+}
+[dir="rtl"] .link-grow::after,
+[dir="rtl"] .link-grow-target::after {
+  transform-origin: right center;
+}
+.link-grow:hover::after,
+.link-grow:focus-visible::after,
+.link-grow.is-current::after,
+.group:hover .link-grow-target::after {
+  transform: scaleX(1);
+}
+
+/*
+ * Buttons. Primary: bronze fill; secondary: ink outline. On hover a second
+ * fill sweeps in from the start edge (transform only); text colour never animates.
+ */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding-inline: 28px;
+  border-radius: var(--radius-button);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform var(--duration-fast) var(--ease-quiet);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 600ms var(--ease-luxe);
+}
+[dir="rtl"] .btn::before {
+  transform-origin: right center;
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: scaleX(1);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.btn-primary {
+  background: var(--color-accent-strong);
+  color: var(--color-canvas);
+}
+.btn-primary::before {
+  background: var(--color-ink);
+}
+.btn-secondary {
+  border: 1px solid var(--color-ink);
+  color: var(--color-ink);
+}
+.btn-secondary::before {
+  background: var(--color-surface);
+}
+.btn-light {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+.btn-light::before {
+  background: var(--color-surface);
+}
+
+/* Small tracked label used for nav, toolbar and meta text. */
+.label {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* Product photo zoom on card hover: stays inside the mat, so nothing is ever cropped. */
+.zoom-on-hover {
+  transition: transform 900ms var(--ease-luxe), opacity var(--duration-base) var(--ease-quiet);
+}
+.group:hover .zoom-on-hover {
+  transform: scale(1.04);
+}
+
+/* Staggered entrance for grids on first paint (index in --i). No-JS safe: only animates. */
+@media (prefers-reduced-motion: no-preference) {
+  .rise-in {
+    animation: rise-in 900ms var(--ease-luxe) both;
+    animation-delay: calc(min(var(--i, 0), 10) * 60ms);
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Header hides on scroll down (HeaderShell); sticky toolbars below it follow. */
+.header-shell,
+.sticky-under-header {
+  transition: transform 600ms var(--ease-luxe);
+}
+[data-header-hidden] .header-shell {
+  transform: translateY(-100%);
+}
+[data-header-hidden] .sticky-under-header {
+  transform: translateY(calc(-1 * var(--header-h)));
+}
+[data-state="open"] > .link-grow::after {
+  transform: scaleX(1);
+}
+
+/* Hero entrance: lines rise out of a mask, then the rest fades up; the photo settles. */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.hero-line > span {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line > span {
+    animation: line-rise 1100ms var(--ease-luxe) both;
+    animation-delay: calc(var(--d, 0) * 120ms + 80ms);
+  }
+  .hero-fade {
+    animation: fade-up 900ms var(--ease-luxe) both;
+    animation-delay: 420ms;
+  }
+  .hero-photo {
+    animation: photo-settle 1600ms var(--ease-luxe) both;
+  }
+}
+@keyframes line-rise {
+  from {
+    transform: translateY(110%);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes photo-settle {
+  from {
+    transform: scale(1.06);
   }
 }

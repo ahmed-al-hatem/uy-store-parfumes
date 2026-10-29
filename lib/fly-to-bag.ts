@@ -47,7 +47,14 @@ export function flyToBag(source: Element | null): Promise<void> {
   );
 
   return animation.finished.then(
-    () => ghost.remove(),
+    () => {
+      ghost.remove();
+      // The bag acknowledges the arrival with a small bump.
+      target.animate([{ transform: "scale(1)" }, { transform: "scale(1.18)" }, { transform: "scale(1)" }], {
+        duration: 480,
+        easing: `cubic-bezier(${EASE_LUXE.join(",")})`,
+      });
+    },
     () => ghost.remove(),
   );
 }

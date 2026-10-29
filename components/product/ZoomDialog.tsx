@@ -65,13 +65,13 @@ export function ZoomDialog({ images, name, index, open, onIndexChange, onClose }
     >
       <Dialog.Portal>
         <Dialog.Content
-          className="fixed inset-0 z-50 flex flex-col bg-limestone data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in"
+          className="fixed inset-0 z-50 flex flex-col bg-canvas data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in"
           onKeyDown={(e) => {
             if (e.key === "ArrowRight") go(1);
             if (e.key === "ArrowLeft") go(-1);
           }}
         >
-          <div className="flex items-center justify-between border-b border-soot px-16 lg:px-32">
+          <div className="flex items-center justify-between border-b border-line px-16 lg:px-32">
             <Dialog.Title className="text-caption">
               {name}, photo {index + 1} of {images.length}
             </Dialog.Title>
@@ -114,7 +114,7 @@ export function ZoomDialog({ images, name, index, open, onIndexChange, onClose }
           </div>
 
           {images.length > 1 && (
-            <div className="flex items-center justify-between border-t border-soot px-16 lg:px-32">
+            <div className="flex items-center justify-between border-t border-line px-16 lg:px-32">
               <button type="button" onClick={() => go(-1)} className="min-h-touch text-caption uppercase decoration-1 underline-offset-4 hover:underline">
                 Previous
               </button>

@@ -35,7 +35,7 @@ export function GiftOptions() {
             rows={3}
             aria-describedby={`${id}-count`}
             placeholder="Written by hand on a studio card. Prices are never included."
-            className="mt-6 block w-full rounded-input border border-soot bg-transparent p-10 text-body-sm placeholder:text-soot/60"
+            className="mt-6 block w-full rounded-input border border-ink/40 bg-transparent p-10 text-body-sm placeholder:text-muted"
           />
           <p id={`${id}-count`} className="pt-4 text-end text-caption tabular-nums">
             {giftMessage.length} / {GIFT_MESSAGE_MAX}
@@ -74,8 +74,8 @@ export function SamplePicker() {
                   onChange={() => toggle(slug)}
                   aria-label={p ? `${p.brandName} ${p.name} sample` : slug}
                 />
-                <span className="block outline-offset-2 peer-checked:outline peer-checked:outline-1 peer-checked:outline-soot peer-focus-visible:outline peer-focus-visible:outline-1 peer-focus-visible:outline-dashed">
-                  {p ? <ProductFrame image={p.images[0]} alt="" sizes="96px" /> : <span className="block aspect-square animate-breathe bg-chalk" />}
+                <span className="block outline-offset-2 peer-checked:outline peer-checked:outline-1 peer-checked:outline-accent-strong peer-focus-visible:outline peer-focus-visible:outline-1 peer-focus-visible:outline-dashed">
+                  {p ? <ProductFrame image={p.images[0]} alt="" sizes="96px" /> : <span className="block aspect-square animate-breathe bg-surface" />}
                 </span>
                 <span className="block truncate pt-4 text-caption">{p?.name ?? " "}</span>
               </label>
@@ -121,7 +121,7 @@ export function PromoField({ subtotal }: { subtotal: number }) {
       <label htmlFor={id} className="text-caption uppercase">
         Promo code
       </label>
-      <div className="flex items-end gap-13 border-b border-soot">
+      <div className="flex items-end gap-13 border-b border-ink/50">
         <input
           id={id}
           value={value}
@@ -133,7 +133,7 @@ export function PromoField({ subtotal }: { subtotal: number }) {
           autoComplete="off"
           aria-invalid={!!error}
           aria-describedby={error ? `${id}-err` : undefined}
-          className="min-h-touch w-full bg-transparent text-body-sm uppercase placeholder:normal-case placeholder:text-soot/60 focus:outline-none"
+          className="min-h-touch w-full bg-transparent text-body-sm uppercase placeholder:normal-case placeholder:text-muted focus:outline-none"
           placeholder="For example WELCOME10"
         />
         <button type="submit" className="min-h-touch text-body-sm uppercase decoration-1 underline-offset-4 hover:underline">

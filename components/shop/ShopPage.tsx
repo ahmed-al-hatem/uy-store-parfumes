@@ -38,19 +38,19 @@ function ShopFallback({ heading, intro, initial }: { heading: string; intro: str
         <h1 className="text-subheading tracking-display lg:text-heading">{heading}</h1>
         <p className="max-w-[56ch] pt-13 text-body">{intro}</p>
       </section>
-      <div className="flex min-h-[53px] items-center gap-13 border-b border-soot px-16 lg:px-32">
+      <div className="flex min-h-[53px] items-center gap-13 border-b border-line px-16 lg:px-32">
         <SearchIcon aria-hidden="true" />
-        <span className="text-body text-soot/60">Search by name, house or note</span>
+        <span className="text-body text-muted">Search by name, house or note</span>
       </div>
-      <div className="flex min-h-touch items-center justify-between border-b border-soot px-16 text-caption uppercase lg:px-32">
+      <div className="flex min-h-touch items-center justify-between border-b border-line px-16 text-caption uppercase lg:px-32">
         <span>Filter</span>
         <span className="normal-case">{initial.total} fragrances</span>
         <span>Sort ▾</span>
       </div>
-      <div className="overflow-hidden border-t border-soot">
-        <ul className="grid w-[calc(100%+1px)] grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" aria-label="Fragrances">
+      <div className="px-gutter">
+        <ul className="grid grid-cols-2 gap-x-gutter gap-y-32 sm:grid-cols-3 lg:grid-cols-5" aria-label="Fragrances">
           {initial.items.map((product, i) => (
-            <li key={product.slug} className="border-b border-e border-soot">
+            <li key={product.slug}>
               <ProductCard product={product} preload={i < 2} headingLevel={2} />
             </li>
           ))}

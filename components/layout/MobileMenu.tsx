@@ -20,9 +20,9 @@ export function MobileMenu() {
         Menu
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-soot/30 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
-        <Dialog.Content className="fixed inset-y-0 start-0 z-50 flex w-[min(100vw,420px)] flex-col overflow-y-auto border-e border-soot bg-limestone data-[state=closed]:animate-drawer-out-start data-[state=open]:animate-drawer-in-start">
-          <div className="flex items-center justify-between border-b border-soot px-16">
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-ink/40 data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in" />
+        <Dialog.Content className="fixed inset-y-0 start-0 z-50 flex w-[min(100vw,420px)] flex-col overflow-y-auto border-e border-line bg-canvas shadow-float data-[state=closed]:animate-drawer-out-start data-[state=open]:animate-drawer-in-start">
+          <div className="flex items-center justify-between border-b border-line px-16">
             <Dialog.Title className="text-caption uppercase">Menu</Dialog.Title>
             <Dialog.Close className="inline-flex min-h-touch min-w-touch items-center justify-end" aria-label="Close menu">
               <CloseIcon />
@@ -47,7 +47,7 @@ export function MobileMenu() {
               </section>
             ))}
           </nav>
-          <ul className="border-t border-soot px-16 py-13">
+          <ul className="border-t border-line px-16 py-13">
             {accountLinks.map((link) => (
               <li key={link.href}>
                 <Dialog.Close asChild>
