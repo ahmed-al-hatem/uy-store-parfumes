@@ -9,6 +9,8 @@ type ProductCardProps = {
   product: ProductSummary;
   sizes?: string;
   preload?: boolean;
+  /** 2 when the grid sits directly under the page h1 (shop, wishlist); 3 under a section h2. */
+  headingLevel?: 2 | 3;
 };
 
 const DEFAULT_SIZES = "(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw";
@@ -19,8 +21,9 @@ const DEFAULT_SIZES = "(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw";
  * The photo link is a mouse convenience; the caption link is the one keyboards
  * and screen readers use, so the card is announced once.
  */
-export function ProductCard({ product, sizes = DEFAULT_SIZES, preload = false }: ProductCardProps) {
+export function ProductCard({ product, sizes = DEFAULT_SIZES, preload = false, headingLevel = 3 }: ProductCardProps) {
   const [first, second] = product.images;
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   const multipleSizes = new Set(product.sizes.map((s) => s.price)).size > 1;
   const href = `/product/${product.slug}`;
 
@@ -43,7 +46,7 @@ export function ProductCard({ product, sizes = DEFAULT_SIZES, preload = false }:
       </div>
       <Link href={href} className="flex flex-1 flex-col items-center gap-4 px-10 pb-17 pt-13 text-center focus-visible:outline-offset-[-4px]">
         <span className="text-caption">{product.brandName}</span>
-        <h3 className="text-body-sm decoration-1 underline-offset-4 group-hover:underline">{product.name}</h3>
+        <Heading className="text-body-sm decoration-1 underline-offset-4 group-hover:underline">{product.name}</Heading>
         <span className="text-body-sm">
           {multipleSizes ? "From " : ""}
           {formatPrice(product.priceFrom)}

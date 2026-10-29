@@ -41,7 +41,7 @@ export function WishlistView() {
                   const p = products.get(slug);
                   return (
                     <li key={slug} className="border-b border-e border-soot">
-                      {p ? <ProductCard product={p} /> : <ProductCardSkeleton />}
+                      {p ? <ProductCard product={p} headingLevel={2} /> : <ProductCardSkeleton />}
                     </li>
                   );
                 })}

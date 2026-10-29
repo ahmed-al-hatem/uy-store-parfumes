@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CartDrawer } from "@/components/cart/CartDrawer";
+import { CartDrawerLoader } from "@/components/cart/CartDrawerLoader";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
@@ -21,7 +21,7 @@ export function StoreChrome({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
-      <CartDrawer />
+      <CartDrawerLoader />
       <StoreHydrator />
     </>
   );

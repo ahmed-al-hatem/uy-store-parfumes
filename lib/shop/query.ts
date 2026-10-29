@@ -25,7 +25,7 @@ export const sortLabels: Record<SortKey, string> = {
   bestselling: "Best selling",
 };
 
-export const PAGE_SIZE = 15;
+export const PAGE_SIZE = 10;
 
 const list = parseAsArrayOf(parseAsString, ",").withDefault([]);
 

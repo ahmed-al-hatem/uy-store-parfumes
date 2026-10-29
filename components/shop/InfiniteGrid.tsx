@@ -57,7 +57,7 @@ export function InfiniteGrid({ items, total, loading, loadingMore, onLoadMore }:
             ? skeletons(PAGE_SIZE)
             : items.map((product, i) => (
                 <li key={product.slug} className="border-b border-e border-soot">
-                  <ProductCard product={product} preload={i < 2} />
+                  <ProductCard product={product} preload={i < 2} headingLevel={2} />
                 </li>
               ))}
           {loadingMore && skeletons(Math.min(PAGE_SIZE, total - items.length))}

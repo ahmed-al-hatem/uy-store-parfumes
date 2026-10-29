@@ -16,8 +16,8 @@ function CheckoutSkeleton() {
   );
 }
 
-// The form, validation and card helpers ship in their own chunk.
+// The form, validation and card helpers ship in their own chunk. It is still
+// rendered on the server, so the first paint shows the real form, not a skeleton.
 export const CheckoutLoader = dynamic(() => import("./CheckoutForm").then((m) => m.CheckoutForm), {
-  ssr: false,
   loading: CheckoutSkeleton,
 });

@@ -1,3 +1,4 @@
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Suspense } from "react";
 import { ProductCard } from "@/components/product/ProductCard";
 import { SearchIcon } from "@/components/ui/icons";
@@ -21,9 +22,12 @@ export function ShopPage({ category, heading, intro }: ShopPageProps) {
   const popular = getSummaries(POPULAR);
 
   return (
-    <Suspense fallback={<ShopFallback heading={heading} intro={intro} initial={initial} />}>
-      <ShopView initial={initial} category={category} heading={heading} intro={intro} popular={popular} />
-    </Suspense>
+    // URL state (nuqs) is only needed on shop pages, so its adapter lives here, not in the store layout.
+    <NuqsAdapter>
+      <Suspense fallback={<ShopFallback heading={heading} intro={intro} initial={initial} />}>
+        <ShopView initial={initial} category={category} heading={heading} intro={intro} popular={popular} />
+      </Suspense>
+    </NuqsAdapter>
   );
 }
 
@@ -47,7 +51,7 @@ function ShopFallback({ heading, intro, initial }: { heading: string; intro: str
         <ul className="grid w-[calc(100%+1px)] grid-cols-2 sm:grid-cols-3 lg:grid-cols-5" aria-label="Fragrances">
           {initial.items.map((product, i) => (
             <li key={product.slug} className="border-b border-e border-soot">
-              <ProductCard product={product} preload={i < 2} />
+              <ProductCard product={product} preload={i < 2} headingLevel={2} />
             </li>
           ))}
         </ul>

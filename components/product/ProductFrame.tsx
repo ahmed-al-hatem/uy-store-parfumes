@@ -27,7 +27,10 @@ export function ProductFrame({ image, alt, sizes, preload = false, className = "
         sizes={sizes}
         placeholder="blur"
         blurDataURL={image.blurDataURL}
+        // LCP image: preload link plus high fetch priority (preload alone is fetched at low priority).
         preload={preload}
+        fetchPriority={preload ? "high" : undefined}
+        loading={preload ? "eager" : undefined}
         className="h-full w-full object-contain"
       />
     </div>

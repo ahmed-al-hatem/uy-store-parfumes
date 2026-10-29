@@ -14,7 +14,9 @@ export default function CheckoutLayout({ children }: LayoutProps<"/">) {
         </Link>
         <span className="text-end text-caption">Secure checkout</span>
       </header>
-      <main id="content">{children}</main>
+      <main id="content" className="min-h-[90dvh]">
+        {children}
+      </main>
       <StoreHydrator />
     </>
   );
