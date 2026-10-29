@@ -1,0 +1,69 @@
+{
+  "exclude": [
+    "acqua-di-gio-fahrenheit-cool-water"
+  ],
+  "atmosphere": [
+    "perfume-oil-dropper"
+  ],
+  "order": {
+    "armani-acqua-di-gio": [
+      "armani-acqua-di-gio-2",
+      "armani-acqua-di-gio-1"
+    ],
+    "armani-acqua-di-gio-profumo": [
+      "armani-acqua-di-gio-profumo-2",
+      "armani-acqua-di-gio-profumo-1"
+    ],
+    "bvlgari-man-wood-neroli": [
+      "bvlgari-man-wood-neroli-2",
+      "bvlgari-man-wood-neroli-1",
+      "bvlgari-man-wood-neroli-3"
+    ],
+    "chanel-coco-mademoiselle": [
+      "chanel-coco-mademoiselle-2",
+      "chanel-coco-mademoiselle-1",
+      "chanel-coco-mademoiselle-3"
+    ],
+    "chanel-n5": [
+      "chanel-n5-2",
+      "chanel-n5-1"
+    ],
+    "ck-one": [
+      "ck-one-2",
+      "ck-one-1"
+    ],
+    "dolce-gabbana-11-la-force": [
+      "dolce-gabbana-11-la-force-2",
+      "dolce-gabbana-11-la-force-1",
+      "dolce-gabbana-11-la-force-3"
+    ],
+    "dolce-gabbana-dolce": [
+      "dolce-gabbana-dolce-2",
+      "dolce-gabbana-dolce-1"
+    ],
+    "dolce-gabbana-the-one-grey": [
+      "dolce-gabbana-the-one-grey-2",
+      "dolce-gabbana-the-one-grey-1",
+      "dolce-gabbana-the-one-grey-3"
+    ],
+    "gucci-memoire-d-une-odeur": [
+      "gucci-memoire-d-une-odeur-2",
+      "gucci-memoire-d-une-odeur-1",
+      "gucci-memoire-d-une-odeur-3"
+    ],
+    "hermes-h24": [
+      "hermes-h24-2",
+      "hermes-h24-1"
+    ],
+    "montblanc-legend-spirit": [
+      "montblanc-legend-spirit-2",
+      "montblanc-legend-spirit-1",
+      "montblanc-legend-spirit-3"
+    ],
+    "zara-at-dawn": [
+      "zara-at-dawn-2",
+      "zara-at-dawn-1",
+      "zara-at-dawn-3"
+    ]
+  }
+}
