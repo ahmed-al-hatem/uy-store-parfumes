@@ -85,6 +85,20 @@
   --animate-fade-out: fade-out 240ms var(--ease-quiet) both;
   --animate-drawer-in-start: drawer-in-start 480ms var(--ease-luxe) both;
   --animate-drawer-out-start: drawer-out-start 240ms var(--ease-quiet) both;
+  --animate-sheet-in: sheet-in 480ms var(--ease-luxe) both;
+  --animate-sheet-out: sheet-out 240ms var(--ease-quiet) both;
+  --animate-breathe: breathe 1600ms var(--ease-quiet) infinite alternate;
+
+  @keyframes sheet-in {
+    from { transform: translateY(100%); }
+  }
+  @keyframes sheet-out {
+    to { transform: translateY(100%); }
+  }
+  @keyframes breathe {
+    from { opacity: 1; }
+    to { opacity: 0.55; }
+  }
 
   @keyframes fade-in {
     from { opacity: 0; }
@@ -106,6 +120,8 @@
 }
 
 :root {
+  /* Sticky header row: 44px touch target + 1px Soot rule. Sticky toolbars sit below it. */
+  --header-h: 45px;
   --duration-fast: 240ms;
   --duration-base: 480ms;
   --duration-slow: 900ms;

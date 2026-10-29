@@ -9,7 +9,8 @@ type NavItemProps = ComponentProps<typeof Link> & { href: string };
 /** Uppercase 13px nav link: underline on hover, permanent underline when current (DESIGN.md). */
 export function NavItem({ href, className = "", children, ...props }: NavItemProps) {
   const pathname = usePathname();
-  const current = pathname === href.split("?")[0];
+  // Links that carry a query (e.g. ?focus=search) are actions, never "current".
+  const current = !href.includes("?") && pathname === href;
   return (
     <Link
       href={href}
