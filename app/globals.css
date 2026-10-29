@@ -85,7 +85,16 @@
   --animate-fade-out: fade-out 240ms var(--ease-quiet) both;
   --animate-drawer-in-start: drawer-in-start 480ms var(--ease-luxe) both;
   --animate-drawer-out-start: drawer-out-start 240ms var(--ease-quiet) both;
+  --animate-drawer-in-end: drawer-in-end 480ms var(--ease-luxe) both;
+  --animate-drawer-out-end: drawer-out-end 240ms var(--ease-quiet) both;
   --animate-sheet-in: sheet-in 480ms var(--ease-luxe) both;
+
+  @keyframes drawer-in-end {
+    from { transform: translateX(calc(100% * var(--start-dir, 1))); }
+  }
+  @keyframes drawer-out-end {
+    to { transform: translateX(calc(100% * var(--start-dir, 1))); }
+  }
   --animate-sheet-out: sheet-out 240ms var(--ease-quiet) both;
   --animate-breathe: breathe 1600ms var(--ease-quiet) infinite alternate;
 

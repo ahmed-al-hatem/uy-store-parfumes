@@ -10,11 +10,14 @@
     "images": "node scripts/inventory-images.mjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^6.0.2",
     "next": "16.4.3",
     "nuqs": "^2.10.2",
     "radix-ui": "^1.8.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "react-hook-form": "^7.91.0",
+    "zod": "^4.6.7",
     "zustand": "^5.0.16"
   },
   "devDependencies": {

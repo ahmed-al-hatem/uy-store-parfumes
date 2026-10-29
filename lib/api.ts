@@ -28,4 +28,8 @@ export function fetchSuggestions(q: string, signal?: AbortSignal) {
   return get<Suggestions>(`/api/search?q=${encodeURIComponent(q)}`, signal);
 }
 
+export function fetchSummaries(slugs: string[], signal?: AbortSignal) {
+  return get<ProductSummary[]>(`/api/products/lookup?slugs=${slugs.map(encodeURIComponent).join(",")}`, signal);
+}
+
 export type { Suggestions };
