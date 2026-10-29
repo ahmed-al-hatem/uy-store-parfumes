@@ -33,7 +33,7 @@ export function Gallery({ images, name }: GalleryProps) {
   };
 
   return (
-    <section aria-label={`${name} photographs`} className="relative">
+    <section aria-label={`${name} photographs`} className="relative" data-gallery>
       <ul
         ref={track}
         onScroll={onScroll}

@@ -1,6 +1,9 @@
 "use client";
 
+import * as m from "motion/react-m";
 import { CloseIcon } from "@/components/ui/icons";
+import { collections } from "@/data/taxonomy";
+import { DURATION, EASE_LUXE } from "@/lib/motion";
 import { countActiveFilters, priceBuckets, type Facets, type ShopParams } from "@/lib/shop/query";
 
 type AppliedFiltersProps = {
@@ -30,6 +33,11 @@ export function AppliedFilters({ params, facets, onChange, onClear }: AppliedFil
   const chips: Chip[] = [
     ...listChips("gender", facets.gender),
     ...listChips("family", facets.family),
+    ...params.collection.map((c) => ({
+      key: `collection:${c}`,
+      label: collections.find((x) => x.slug === c)?.title ?? c,
+      remove: () => onChange({ collection: params.collection.filter((x) => x !== c) }),
+    })),
     ...listChips("brand", facets.brand),
     ...listChips("notes", facets.notes),
     ...listChips("concentration", facets.concentration),
@@ -46,7 +54,7 @@ export function AppliedFilters({ params, facets, onChange, onClear }: AppliedFil
       <h2 className="sr-only">Applied filters</h2>
       <ul className="contents">
         {chips.map((chip) => (
-          <li key={chip.key}>
+          <m.li key={chip.key} layout="position" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: DURATION.base, ease: EASE_LUXE }}>
             <button
               type="button"
               onClick={chip.remove}
@@ -56,7 +64,7 @@ export function AppliedFilters({ params, facets, onChange, onClear }: AppliedFil
               {chip.label}
               <CloseIcon size={10} />
             </button>
-          </li>
+          </m.li>
         ))}
       </ul>
       <button type="button" onClick={onClear} className="min-h-touch text-caption uppercase underline decoration-1 underline-offset-4">

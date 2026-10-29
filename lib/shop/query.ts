@@ -34,6 +34,7 @@ export const shopParsers = {
   gender: list,
   brand: list,
   family: list,
+  collection: list,
   notes: list,
   concentration: list,
   size: parseAsArrayOf(parseAsInteger, ",").withDefault([]),
@@ -48,7 +49,7 @@ export const shopParsers = {
 export type ShopParams = inferParserType<typeof shopParsers>;
 
 /** Everything that narrows the result set (page and sort excluded). */
-export const FILTER_KEYS = ["gender", "brand", "family", "notes", "concentration", "size", "priceMin", "priceMax", "rating", "inStock"] as const;
+export const FILTER_KEYS = ["gender", "brand", "family", "collection", "notes", "concentration", "size", "priceMin", "priceMax", "rating", "inStock"] as const;
 
 export type ShopQuery = Omit<ShopParams, "page"> & {
   /** Fixed by the route on /shop/[category]. */
@@ -65,6 +66,7 @@ export function countActiveFilters(p: Pick<ShopParams, (typeof FILTER_KEYS)[numb
     p.gender.length +
     p.brand.length +
     p.family.length +
+    p.collection.length +
     p.notes.length +
     p.concentration.length +
     p.size.length +
@@ -79,6 +81,7 @@ export const defaultParams: ShopParams = {
   gender: [],
   brand: [],
   family: [],
+  collection: [],
   notes: [],
   concentration: [],
   size: [],

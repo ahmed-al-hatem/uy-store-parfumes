@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" dir="ltr" className={dmSans.variable}>
-      <body className="min-h-dvh">{children}</body>
+      <body className="min-h-dvh">
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }

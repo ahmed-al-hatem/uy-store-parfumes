@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { formatPrice } from "@/lib/config";
+import { flyToBag } from "@/lib/fly-to-bag";
 import type { Concentration, ProductSize } from "@/lib/types";
 import { useCart, useCartDrawer } from "@/store/cart";
 import { DeliveryEstimate } from "./DeliveryEstimate";
@@ -74,7 +75,8 @@ export function PurchasePanel({ slug, name, brandName, concentration, sizes }: P
     if (soldOut) return;
     add({ slug, sizeMl: size.ml, concentration: size.concentration });
     setNotice(`${name}, ${sizeLabel(size)}, added to your bag.`);
-    openDrawer(true);
+    // The photo travels to the bag icon, then the bag opens.
+    void flyToBag(document.querySelector("[data-gallery] li")).then(() => openDrawer(true));
   }
 
   function buyNow() {

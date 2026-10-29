@@ -1,8 +1,11 @@
 "use client";
 
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import Link from "next/link";
 import { ProductFrame } from "@/components/product/ProductFrame";
 import { formatPrice } from "@/lib/config";
+import { DURATION, EASE_LUXE, EASE_QUIET } from "@/lib/motion";
 import type { PricedLine } from "@/lib/pricing";
 import { useCart, useCartUndo } from "@/store/cart";
 import { QuantityStepper } from "./QuantityStepper";
@@ -42,8 +45,15 @@ export function CartLines({ priced, compact = false, onNavigate }: { priced: Pri
   return (
     <div>
       <ul className="border-t border-soot">
+        <AnimatePresence initial={false}>
         {priced.map((line, i) => (
-          <li key={line.id} className="flex gap-13 border-b border-soot py-13">
+          <m.li
+            key={line.id}
+            layout="position"
+            exit={{ opacity: 0, transition: { duration: DURATION.fast, ease: EASE_QUIET } }}
+            transition={{ duration: DURATION.base, ease: EASE_LUXE }}
+            className="flex gap-13 border-b border-soot py-13"
+          >
             <Link href={`/product/${line.slug}`} onClick={onNavigate} className={`${thumb} shrink-0`} tabIndex={-1} aria-hidden="true">
               <ProductFrame image={line.product.images[0]} alt="" sizes="128px" />
             </Link>
@@ -72,8 +82,9 @@ export function CartLines({ priced, compact = false, onNavigate }: { priced: Pri
                 </button>
               </div>
             </div>
-          </li>
+          </m.li>
         ))}
+        </AnimatePresence>
       </ul>
       <UndoNotice />
     </div>

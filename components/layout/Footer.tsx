@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerColumns } from "@/lib/navigation";
+import { HideOnHome } from "./HideOnHome";
 import { NewsletterForm } from "./NewsletterForm";
 
 const linkClass = "decoration-1 underline-offset-4 hover:underline";
@@ -8,14 +9,16 @@ const linkClass = "decoration-1 underline-offset-4 hover:underline";
 export function Footer() {
   return (
     <footer className="mt-section border-t border-soot">
-      <div className="grid gap-30 px-16 py-30 md:grid-cols-2 lg:grid-cols-4 lg:px-32 lg:py-32">
-        <section aria-labelledby="footer-letter" className="md:col-span-2 lg:col-span-1">
-          <h2 id="footer-letter" className="text-caption uppercase">
-            The letter
-          </h2>
-          <p className="pb-13 pt-17 text-body-sm">New arrivals and studio evenings, four times a year.</p>
-          <NewsletterForm />
-        </section>
+      <div className="grid gap-30 px-16 py-30 md:grid-cols-2 lg:auto-cols-fr lg:grid-flow-col lg:grid-cols-none lg:px-32 lg:py-32">
+        <HideOnHome>
+          <section aria-labelledby="footer-letter" className="md:col-span-2 lg:col-span-1">
+            <h2 id="footer-letter" className="text-caption uppercase">
+              The letter
+            </h2>
+            <p className="pb-13 pt-17 text-body-sm">New arrivals and studio evenings, four times a year.</p>
+            <NewsletterForm />
+          </section>
+        </HideOnHome>
         {footerColumns.map((column) => (
           <section key={column.title} aria-labelledby={`footer-${column.title}`}>
             <h2 id={`footer-${column.title}`} className="text-caption uppercase">

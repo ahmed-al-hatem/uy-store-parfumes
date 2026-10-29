@@ -26,6 +26,7 @@ function passes(p: Product, q: ShopQuery, skip?: Key) {
   if (skip !== "gender" && q.gender.length && !q.gender.includes(p.gender)) return false;
   if (skip !== "brand" && q.brand.length && !q.brand.includes(p.brand)) return false;
   if (skip !== "family" && q.family.length && !q.family.includes(p.family)) return false;
+  if (q.collection.length && !q.collection.some((c) => p.collections.includes(c))) return false;
   if (skip !== "notes" && q.notes.length) {
     const own = allNotes(p).map(normalize);
     if (!q.notes.every((n) => own.includes(normalize(n)))) return false;

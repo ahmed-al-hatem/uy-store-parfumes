@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatPrice } from "@/lib/config";
 import type { ProductSummary } from "@/lib/types";
+import { CardActions } from "./CardActions";
 import { ProductFrame } from "./ProductFrame";
 
 type ProductCardProps = {
@@ -15,45 +16,38 @@ const DEFAULT_SIZES = "(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw";
 /**
  * The photograph is the card (DESIGN.md): no border, no shadow. Name and price
  * sit centred below. On hover-capable screens the second photo fades in.
+ * The photo link is a mouse convenience; the caption link is the one keyboards
+ * and screen readers use, so the card is announced once.
  */
 export function ProductCard({ product, sizes = DEFAULT_SIZES, preload = false }: ProductCardProps) {
   const [first, second] = product.images;
   const multipleSizes = new Set(product.sizes.map((s) => s.price)).size > 1;
-  const alt = `${product.brandName} ${product.name}`;
+  const href = `/product/${product.slug}`;
 
   return (
     <article className="group relative flex h-full flex-col bg-limestone">
-      <Link href={`/product/${product.slug}`} className="flex h-full flex-col focus-visible:outline-offset-[-4px]">
-        <div className="relative">
-          <ProductFrame image={first} alt={`${alt}, bottle photograph`} sizes={sizes} preload={preload} />
+      <div className="relative">
+        <Link href={href} tabIndex={-1} aria-hidden="true" className="block">
+          <ProductFrame image={first} alt="" sizes={sizes} preload={preload} />
           {second && (
-            <div
+            <span
               className="absolute inset-0 opacity-0 transition-opacity duration-[var(--duration-base)] ease-quiet group-hover:opacity-100"
               style={{ backgroundColor: second.frame }}
-              aria-hidden="true"
             >
-              <Image
-                src={second.src}
-                alt=""
-                width={second.width}
-                height={second.height}
-                sizes={sizes}
-                className="h-full w-full object-contain"
-              />
-            </div>
+              <Image src={second.src} alt="" width={second.width} height={second.height} sizes={sizes} className="h-full w-full object-contain" />
+            </span>
           )}
-          {!product.inStock && (
-            <span className="absolute start-10 top-10 bg-limestone px-6 py-4 text-caption">Sold out</span>
-          )}
-        </div>
-        <div className="flex flex-1 flex-col items-center gap-4 px-10 pb-17 pt-13 text-center">
-          <p className="text-caption">{product.brandName}</p>
-          <h3 className="text-body-sm decoration-1 underline-offset-4 group-hover:underline">{product.name}</h3>
-          <p className="text-body-sm">
-            {multipleSizes ? "From " : ""}
-            {formatPrice(product.priceFrom)}
-          </p>
-        </div>
+        </Link>
+        {!product.inStock && <span className="pointer-events-none absolute start-10 top-10 bg-limestone px-6 py-4 text-caption">Sold out</span>}
+        <CardActions product={product} />
+      </div>
+      <Link href={href} className="flex flex-1 flex-col items-center gap-4 px-10 pb-17 pt-13 text-center focus-visible:outline-offset-[-4px]">
+        <span className="text-caption">{product.brandName}</span>
+        <h3 className="text-body-sm decoration-1 underline-offset-4 group-hover:underline">{product.name}</h3>
+        <span className="text-body-sm">
+          {multipleSizes ? "From " : ""}
+          {formatPrice(product.priceFrom)}
+        </span>
       </Link>
     </article>
   );
