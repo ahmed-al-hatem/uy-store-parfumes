@@ -88,7 +88,7 @@ export function buildReviews(product: ProductRecord): Review[] {
   for (let i = 0; i < count; i++) {
     const line = pool[(seed + i * 7) % pool.length];
     const [author, location] = authors[(seed + i * 11) % authors.length];
-    const day = 1 + ((seed >> (i % 16)) % 27);
+    const day = 1 + ((seed >>> (i % 16)) % 27);
     const month = 1 + ((seed + i * 5) % 9);
     out.push({
       id: `${product.slug}-${i}`,
